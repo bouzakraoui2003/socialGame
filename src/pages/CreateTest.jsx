@@ -19,6 +19,7 @@ const CreateTest = () => {
   const [creatorName, setCreatorName] = useState('');
   const [isNameEntered, setIsNameEntered] = useState(false);
   const [nameError, setNameError] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
 
   const currentCategory = categories[currentCategoryIndex];
   const isLastCategory = currentCategoryIndex === categories.length - 1;
@@ -59,7 +60,7 @@ const CreateTest = () => {
     setSelectedOption(option);
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (!selectedOption) return;
 
     // Save answer for current category
@@ -71,12 +72,14 @@ const CreateTest = () => {
 
     // Move to next category or finish
     if (isLastCategory) {
+      setIsSaving(true);
       // Generate test ID and save
       const testId = generateId();
-      saveTest(testId, newAnswers, creatorName);
+      await saveTest(testId, newAnswers, creatorName);
 
       // Navigate to share/result page
       navigate(`/share/${testId}`);
+      setIsSaving(false);
     } else {
       setCurrentCategoryIndex(currentCategoryIndex + 1);
       setSelectedOption(null);
@@ -93,13 +96,15 @@ const CreateTest = () => {
     }
   };
 
-  const handleSkip = () => {
+  const handleSkip = async () => {
     // Skip current category (don't save answer)
     if (isLastCategory) {
+      setIsSaving(true);
       // If last category and skipping, still finish with current answers
       const testId = generateId();
-      saveTest(testId, answers, creatorName);
+      await saveTest(testId, answers, creatorName);
       navigate(`/share/${testId}`);
+      setIsSaving(false);
     } else {
       setCurrentCategoryIndex(currentCategoryIndex + 1);
       setSelectedOption(null);
@@ -196,9 +201,9 @@ const CreateTest = () => {
           <button
             className="btn btn-primary"
             onClick={handleNext}
-            disabled={!selectedOption}
+            disabled={!selectedOption || isSaving}
           >
-            {isLastCategory ? 'Finish' : 'Next'}
+            {isSaving ? 'Saving...' : (isLastCategory ? 'Finish' : 'Next')}
           </button>
 
         </div>

@@ -36,13 +36,16 @@ const PlayTest = () => {
       return;
     }
 
-    const data = getTest(testId);
-    if (!data) {
-      // Test not found, redirect to home
-      navigate('/');
-      return;
-    }
-    setTestData(data);
+    const fetchTestData = async () => {
+      const data = await getTest(testId);
+      if (!data) {
+        // Test not found, redirect to home
+        navigate('/');
+        return;
+      }
+      setTestData(data);
+    };
+    fetchTestData();
   }, [testId, navigate, location.state]);
 
   // Reset selected option when category changes

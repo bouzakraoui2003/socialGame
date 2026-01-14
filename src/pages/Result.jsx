@@ -22,8 +22,10 @@ const Result = () => {
       if (!hasSavedRef.current) {
         const { playerName, guesses, score, answers } = location.state;
         if (playerName && guesses && answers) {
-          savePlayerResult(testId, playerName, guesses, score, answers);
-          hasSavedRef.current = true; // Mark as saved
+          // Fire and forget, but handled cleanly
+          savePlayerResult(testId, playerName, guesses, score, answers)
+            .catch(err => console.error("Failed to save result", err));
+          hasSavedRef.current = true; // Mark as saved immediately to prevent double-save
         }
       }
     } else {

@@ -16,15 +16,18 @@ const PlayIntro = () => {
 
   // Check if test exists on mount
   useEffect(() => {
-    const data = getTest(testId);
-    if (!data) {
-      console.error(`Test not found: ${testId}`);
-      setTestData(null);
-    } else {
-      console.log(`Test found: ${testId}`);
-      setTestData(data);
-    }
-    setLoading(false);
+    const fetchTestData = async () => {
+      const data = await getTest(testId);
+      if (!data) {
+        console.error(`Test not found: ${testId}`);
+        setTestData(null);
+      } else {
+        console.log(`Test found: ${testId}`);
+        setTestData(data);
+      }
+      setLoading(false);
+    };
+    fetchTestData();
   }, [testId]);
 
   const handleSubmit = (e) => {

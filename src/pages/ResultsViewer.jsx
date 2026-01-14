@@ -14,30 +14,33 @@ const ResultsViewer = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Verify test exists
-    const data = getTest(testId);
-    if (!data) {
-      navigate('/');
-      return;
-    }
-    setTestData(data);
-
-    // Load all player results
-    const playerResults = getPlayerResults(testId);
-    // Sort by score (highest first), then by date (newest first)
-    const sortedResults = playerResults.sort((a, b) => {
-      if (b.score !== a.score) {
-        return b.score - a.score;
+    const fetchData = async () => {
+      // Verify test exists
+      const data = await getTest(testId);
+      if (!data) {
+        navigate('/');
+        return;
       }
-      return new Date(b.completedAt) - new Date(a.completedAt);
-    });
-    setResults(sortedResults);
-    setLoading(false);
+      setTestData(data);
+
+      // Load all player results
+      const playerResults = await getPlayerResults(testId);
+      // Sort by score (highest first), then by date (newest first)
+      const sortedResults = playerResults.sort((a, b) => {
+        if (b.score !== a.score) {
+          return b.score - a.score;
+        }
+        return new Date(b.completedAt) - new Date(a.completedAt);
+      });
+      setResults(sortedResults);
+      setLoading(false);
+    };
+    fetchData();
   }, [testId, navigate]);
 
   const getScoreMessage = (score, total) => {
     const percentage = (score / total) * 100;
-    
+
     if (percentage === 100) {
       return { message: "Perfect! 🏆", emoji: "🏆", color: "#22c55e" };
     } else if (percentage >= 80) {
@@ -98,7 +101,7 @@ const ResultsViewer = () => {
           </div>
           <div className="stat-card">
             <div className="stat-number">
-              {results.length > 0 
+              {results.length > 0
                 ? Math.round((results.reduce((sum, r) => sum + r.score, 0) / results.length / totalQuestions) * 100)
                 : 0}%
             </div>
@@ -144,8 +147,8 @@ const ResultsViewer = () => {
                           ({Math.round((result.score / (result.totalQuestions || totalQuestions)) * 100)}%)
                         </span>
                       </div>
-                      <div 
-                        className="result-message" 
+                      <div
+                        className="result-message"
                         style={{ color: scoreMessage.color }}
                       >
                         <span className="result-emoji">{scoreMessage.emoji}</span>

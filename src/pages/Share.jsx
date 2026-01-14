@@ -12,10 +12,13 @@ const Share = () => {
   const [creatorName, setCreatorName] = useState('');
 
   useEffect(() => {
-    const testData = getTest(testId);
-    if (testData?.creatorName) {
-      setCreatorName(testData.creatorName);
-    }
+    const fetchTestData = async () => {
+      const testData = await getTest(testId);
+      if (testData?.creatorName) {
+        setCreatorName(testData.creatorName);
+      }
+    };
+    fetchTestData();
   }, [testId]);
 
   const getShareableLink = () => {
