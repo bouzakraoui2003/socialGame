@@ -1,0 +1,108 @@
+/* PlayTest.css */
+.play-test-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.play-test-content {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-instruction {
+  font-size: 1.2rem;
+  color: var(--secondary);
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+/* Shared grid styles - Duplicate of CreateTest.css for now */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.options-grid.grid-center-limited {
+  grid-template-columns: repeat(2, minmax(200px, 300px));
+  justify-content: center;
+}
+
+.options-grid.grid-center-limited .category-card-3d-wrapper {
+  aspect-ratio: 1 / 1;
+  min-height: auto;
+}
+
+.options-grid.grid-center-limited .card-image-container {
+  height: 75%;
+}
+
+@media (max-width: 600px) {
+  .options-grid.grid-center-limited {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navigation-buttons button {
+  min-width: 120px;
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.options-grid>* {
+  animation: slideUp 0.5s var(--ease-spring) backwards;
+}
+
+.options-grid>*:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.options-grid>*:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.options-grid>*:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.options-grid>*:nth-child(4) {
+  animation-delay: 0.25s;
+}
+
+.options-grid>*:nth-child(5) {
+  animation-delay: 0.3s;
+}
+
+.options-grid>*:nth-child(6) {
+  animation-delay: 0.35s;
+}
+
+.options-grid>*:nth-child(7) {
+  animation-delay: 0.4s;
+}

@@ -1,0 +1,76 @@
+/* EnterTestId.css */
+.enter-test-id-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.enter-test-id-content {
+  width: 100%;
+  max-width: 500px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.error-message {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  margin-top: -10px;
+  font-size: 0.9rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.enter-test-id-content h1 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.enter-test-id-content p {
+  margin-bottom: 30px;
+  color: var(--text-secondary);
+}
+
+.test-id-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.test-id-input {
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 20px;
+}
+
+.test-id-input::placeholder {
+  font-size: 1rem;
+  letter-spacing: normal;
+  font-weight: 400;
+  opacity: 0.5;
+}
+
+.btn-link {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.btn-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}

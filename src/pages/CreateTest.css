@@ -1,0 +1,229 @@
+/* CreateTest.css */
+.create-test-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.create-test-content {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.category-question {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  background: linear-gradient(to right, #fff, var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 480px) {
+  .options-grid {
+    grid-template-columns: 1fr 1fr;
+    /* Force 2 columns on very small screens usually looks better than 1 big one unless text is long */
+    gap: 12px;
+  }
+
+  .create-test-container {
+    padding: 20px 10px;
+  }
+}
+
+/* Special grid for 2 options to keep them square and centered */
+.options-grid.grid-center-limited {
+  grid-template-columns: repeat(2, minmax(200px, 300px));
+  justify-content: center;
+}
+
+/* Enforce square aspect ratio for cards in limited grid */
+.options-grid.grid-center-limited .category-card-3d-wrapper {
+  aspect-ratio: 1 / 1;
+  min-height: auto;
+}
+
+.options-grid.grid-center-limited .card-image-container {
+  height: 75%;
+  /* More height for image in square ratio */
+}
+
+/* Responsive fix for small screens */
+@media (max-width: 600px) {
+  .options-grid.grid-center-limited {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navigation-buttons button {
+  min-width: 120px;
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.options-grid>* {
+  animation: slideUp 0.5s var(--ease-spring) backwards;
+}
+
+.options-grid>*:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.options-grid>*:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.options-grid>*:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.options-grid>*:nth-child(4) {
+  animation-delay: 0.25s;
+}
+
+.options-grid>*:nth-child(5) {
+  animation-delay: 0.3s;
+}
+
+.options-grid>*:nth-child(6) {
+  animation-delay: 0.35s;
+}
+
+.options-grid>*:nth-child(7) {
+  animation-delay: 0.4s;
+}
+
+.options-grid>*:nth-child(8) {
+  animation-delay: 0.45s;
+}
+
+/* Name Input Mode Styles */
+.create-test-container.name-input-mode {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.name-creation-card {
+  width: 100%;
+  max-width: 600px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.name-title {
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.name-creation-card .subtitle {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.name-creation-card .subtitle-small {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.name-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.name-input-group {
+  width: 100%;
+}
+
+.name-input {
+  width: 100%;
+  padding: 18px 24px;
+  font-size: 1.1rem;
+  border-radius: var(--radius-md);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.name-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-glow);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.name-input.error {
+  border-color: #ef4444;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.btn-large {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.ad-container-bottom {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .name-creation-card {
+    padding: 24px;
+  }
+}

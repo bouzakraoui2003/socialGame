@@ -1,0 +1,124 @@
+/* CategoryCard.css */
+.category-card-3d-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  touch-action: none;
+}
+
+.category-card-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  /* rounded corners clip image */
+  transform-style: preserve-3d;
+}
+
+/* Image Container */
+.card-image-container {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Zoom effect on hover */
+.category-card-3d-wrapper:hover .card-image {
+  transform: scale(1.1);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.8));
+  z-index: 1;
+}
+
+/* Title */
+.category-title {
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-primary);
+  z-index: 2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* Selected State */
+.category-card-3d-wrapper.selected .category-card-content {
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.selected-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  background: var(--primary);
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Active/Click State */
+.category-card-3d-wrapper:active {
+  transform: scale(0.95) !important;
+  /* Override inline styles temporarily */
+  transition: transform 0.1s;
+}
+
+/* Glow Effect */
+.glow-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 100%, var(--primary-glow) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.category-card-3d-wrapper:hover .glow-effect {
+  opacity: 0.4;
+}
