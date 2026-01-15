@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getTest, getPlayerResults } from '../utils/storage';
+import { categories } from '../data/categories';
 import './ResultsViewer.css';
 
 const ResultsViewer = () => {
@@ -12,6 +13,15 @@ const ResultsViewer = () => {
   const [testData, setTestData] = useState(null);
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [expandedPlayerId, setExpandedPlayerId] = useState(null);
+
+  const toggleExpand = (playerId) => {
+    if (expandedPlayerId === playerId) {
+      setExpandedPlayerId(null);
+    } else {
+      setExpandedPlayerId(playerId);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,7 +100,7 @@ const ResultsViewer = () => {
     <div className="results-viewer-container">
       <div className="results-viewer-content">
         <div className="results-header">
-          <h1>📊 Test Results</h1>
+          <h1>Test Results</h1>
           <p>See how well your friends know you!</p>
         </div>
 
@@ -130,32 +140,73 @@ const ResultsViewer = () => {
             {results.map((result, index) => {
               const scoreMessage = getScoreMessage(result.score, result.totalQuestions || totalQuestions);
               return (
-                <div key={result.id || index} className="result-card">
-                  <div className="result-rank">
-                    #{index + 1}
-                  </div>
-                  <div className="result-main">
-                    <div className="result-header-info">
-                      <h3 className="result-player-name">{result.playerName}</h3>
-                      <span className="result-date">{formatDate(result.completedAt)}</span>
+
+                <div key={result.id || index} className={`result-card ${expandedPlayerId === result.id ? 'expanded' : ''}`}>
+                  <div className="result-summary" onClick={() => toggleExpand(result.id)}>
+                    <div className="result-rank">
+                      #{index + 1}
                     </div>
-                    <div className="result-score-section">
-                      <div className="result-score">
-                        <span className="score-value">{result.score}</span>
-                        <span className="score-total">/{result.totalQuestions || totalQuestions}</span>
-                        <span className="score-percentage">
-                          ({Math.round((result.score / (result.totalQuestions || totalQuestions)) * 100)}%)
-                        </span>
+                    <div className="result-main">
+                      <div className="result-header-info">
+                        <h3 className="result-player-name">{result.playerName}</h3>
+                        <span className="result-date">{formatDate(result.completedAt)}</span>
                       </div>
-                      <div
-                        className="result-message"
-                        style={{ color: scoreMessage.color }}
-                      >
-                        <span className="result-emoji">{scoreMessage.emoji}</span>
-                        {scoreMessage.message}
+                      <div className="result-score-section">
+                        <div className="result-score">
+                          <span className="score-value">{result.score}</span>
+                          <span className="score-total">/{result.totalQuestions || totalQuestions}</span>
+                          <span className="score-percentage">
+                            ({Math.round((result.score / (result.totalQuestions || totalQuestions)) * 100)}%)
+                          </span>
+                        </div>
+                        <div
+                          className="result-message"
+                          style={{ color: scoreMessage.color }}
+                        >
+                          <span className="result-emoji">{scoreMessage.emoji}</span>
+                          {scoreMessage.message}
+                          <span className="expand-icon">{expandedPlayerId === result.id ? '▲' : '▼'}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
+
+                  {/* Detailed View */}
+                  {expandedPlayerId === result.id && (
+                    <div className="result-details">
+                      <div className="details-divider"></div>
+                      <h4>Detailed Answers</h4>
+                      <div className="detailed-answers-list">
+                        {categories.map((category) => {
+                          const guess = result.guesses ? result.guesses[category.id] : null;
+                          const correctAnswer = testData.answers[category.id];
+                          const isCorrect = guess === correctAnswer;
+
+                          // Handle objects/strings for display
+                          const guessText = typeof guess === 'object' ? guess.text : guess;
+                          const answerText = typeof correctAnswer === 'object' ? correctAnswer.text : correctAnswer;
+
+                          return (
+                            <div key={category.id} className={`detail-item ${isCorrect ? 'correct' : 'incorrect'}`}>
+                              <div className="detail-question">{category.question}</div>
+                              <div className="detail-comparison">
+                                <div className="detail-row">
+                                  <span className="detail-label">Friend:</span>
+                                  <span className="detail-value">{guessText || 'Skipped'}</span>
+                                </div>
+                                {!isCorrect && (
+                                  <div className="detail-row correct-row">
+                                    <span className="detail-label">You:</span>
+                                    <span className="detail-value">{answerText}</span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </div>
               );
             })}

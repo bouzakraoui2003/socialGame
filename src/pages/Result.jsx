@@ -13,6 +13,7 @@ const Result = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [resultData, setResultData] = useState(null);
+  const [isCopied, setIsCopied] = useState(false);
   const hasSavedRef = useRef(false); // Track if we've already saved the result
 
   useEffect(() => {
@@ -57,7 +58,8 @@ const Result = () => {
   const handleCopyLink = () => {
     const link = getShareableLink();
     navigator.clipboard.writeText(link).then(() => {
-      alert('Link copied to clipboard!');
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
     });
   };
 
@@ -127,8 +129,12 @@ const Result = () => {
           <button className="btn btn-primary" onClick={handleCreateNew}>
             Create Your Own Test
           </button>
-          <button className="btn btn-secondary" onClick={handleCopyLink}>
-            Share This Test
+          <button
+            className={`btn btn-secondary ${isCopied ? 'btn-success' : ''}`}
+            onClick={handleCopyLink}
+            disabled={isCopied}
+          >
+            {isCopied ? 'Link Copied To Clipboard! ✅' : 'Share This Test 🔗'}
           </button>
         </div>
       </div>

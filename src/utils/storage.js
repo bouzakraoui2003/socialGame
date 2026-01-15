@@ -90,7 +90,8 @@ export const getPlayerResults = async (testId) => {
       playerName: item.player_name,
       score: item.score,
       totalQuestions: item.total_questions,
-      completedAt: item.completed_at
+      completedAt: item.completed_at,
+      guesses: item.guesses // Include guesses for detailed view
     }));
   } catch (err) {
     console.error('Error fetching results:', err);

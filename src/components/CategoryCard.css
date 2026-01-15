@@ -6,7 +6,8 @@
   min-height: 200px;
   cursor: pointer;
   transform-style: preserve-3d;
-  touch-action: none;
+  /* Allow vertical scroll but maybe prevent horizontal if needed, or just auto */
+  touch-action: pan-y;
 }
 
 .category-card-content {

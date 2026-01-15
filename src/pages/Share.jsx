@@ -10,6 +10,7 @@ const Share = () => {
   const { testId } = useParams();
   const navigate = useNavigate();
   const [creatorName, setCreatorName] = useState('');
+  const [copiedSection, setCopiedSection] = useState(null); // 'main', 'manual', 'results'
 
   useEffect(() => {
     const fetchTestData = async () => {
@@ -52,7 +53,8 @@ const Share = () => {
     } else {
       // Fallback: Copy FULL message + link
       navigator.clipboard.writeText(fullShareText).then(() => {
-        alert('Message & Link copied to clipboard! Paste it to your friends!');
+        setCopiedSection('main');
+        setTimeout(() => setCopiedSection(null), 2000);
       }).catch(() => {
         alert('Could not auto-copy. Please copy the link below.');
       });
@@ -66,22 +68,27 @@ const Share = () => {
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(shareableLink).then(() => {
-      alert('Link copied to clipboard!');
+      setCopiedSection('manual');
+      setTimeout(() => setCopiedSection(null), 2000);
     }).catch(() => {
+      // Fallback for older browsers
       const textArea = document.createElement('textarea');
       textArea.value = shareableLink;
       document.body.appendChild(textArea);
       textArea.select();
       document.execCommand('copy');
       document.body.removeChild(textArea);
-      alert('Link copied to clipboard!');
+
+      setCopiedSection('manual');
+      setTimeout(() => setCopiedSection(null), 2000);
     });
   };
 
   const handleCopyResultsLink = () => {
     const link = getResultsLink();
     navigator.clipboard.writeText(link).then(() => {
-      alert('Results link copied!');
+      setCopiedSection('results');
+      setTimeout(() => setCopiedSection(null), 2000);
     });
   };
 
@@ -104,8 +111,12 @@ const Share = () => {
 
         {/* Primary Share Action */}
         <div className="share-buttons-group">
-          <button className="btn btn-primary btn-large btn-share-main hover-pulse" onClick={handleNativeShare}>
-            📤 Share Link
+          <button
+            className={`btn btn-primary btn-large btn-share-main hover-pulse ${copiedSection === 'main' ? 'btn-success' : ''}`}
+            onClick={handleNativeShare}
+            disabled={copiedSection === 'main'}
+          >
+            {copiedSection === 'main' ? 'Link & Message Copied! ✅' : '📤 Share Link'}
           </button>
         </div>
 
@@ -119,8 +130,12 @@ const Share = () => {
                 readOnly
                 className="link-input"
               />
-              <button className="btn btn-secondary" onClick={handleCopyLink}>
-                Copy Link
+              <button
+                className={`btn btn-secondary ${copiedSection === 'manual' ? 'btn-success' : ''}`}
+                onClick={handleCopyLink}
+                disabled={copiedSection === 'manual'}
+              >
+                {copiedSection === 'manual' ? 'Copied! ✅' : 'Copy Link'}
               </button>
             </div>
           </div>
@@ -134,8 +149,12 @@ const Share = () => {
                 readOnly
                 className="link-input"
               />
-              <button className="btn btn-secondary" onClick={handleCopyResultsLink}>
-                Copy Results Link
+              <button
+                className={`btn btn-secondary ${copiedSection === 'results' ? 'btn-success' : ''}`}
+                onClick={handleCopyResultsLink}
+                disabled={copiedSection === 'results'}
+              >
+                {copiedSection === 'results' ? 'Copied! ✅' : 'Copy Result Link'}
               </button>
             </div>
           </div>

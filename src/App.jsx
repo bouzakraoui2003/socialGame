@@ -12,10 +12,12 @@ import Background3D from './components/Background3D';
 import AdUnit from './components/AdUnit';
 import './components/Background3D.css';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="app">
         <Background3D />
         <AdUnit format="horizontal" label="Top Sponsor" />

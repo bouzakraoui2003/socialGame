@@ -29,6 +29,7 @@ const CreateTest = () => {
 
   // Load saved answer for current category if exists
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (answers[currentCategory?.id]) {
       setSelectedOption(answers[currentCategory.id]);
     } else {

@@ -11,7 +11,7 @@ function Home() {
           <span className="badge-new">🔥 Trending Now</span>
           <h1 className="title-gradient">
             Do They Really<br />
-            <span className="text-highlight">Know You? 🤔</span>
+            <span className="text-highlight">Know You?</span> <span style={{ WebkitTextFillColor: 'initial', textShadow: 'none' }}>🤔</span>
           </h1>
           <p className="subtitle">
             Create custom quizzes, challenge your friends, and unlock your true social potential in a stunning new dimension.

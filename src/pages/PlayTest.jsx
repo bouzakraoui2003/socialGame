@@ -50,6 +50,7 @@ const PlayTest = () => {
 
   // Reset selected option when category changes
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (guesses[currentCategory?.id]) {
       setSelectedOption(guesses[currentCategory.id]);
     } else {
