@@ -58,7 +58,7 @@ const PlayIntro = () => {
         <div className="play-intro-content glass-panel">
           <h1>🚫 Test Not Found</h1>
           <p>We couldn't find a test with ID: <strong>{testId}</strong></p>
-          <p className="error-hint">This game uses your browser's local storage. If you are opening this link on a different device or browser than where it was created, it won't work.</p>
+          <p className="error-hint">Please check the ID and try again.</p>
           <button className="btn btn-primary" onClick={() => navigate('/')}>
             Go Home
           </button>

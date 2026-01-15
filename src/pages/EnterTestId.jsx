@@ -10,20 +10,26 @@ const EnterTestId = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!testId.trim()) return;
 
-    const formattedId = testId.trim().toUpperCase();
+    const formattedId = testId.trim().toUpperCase(); // IDs are case-sensitive usually, but let's assume uppercase based on generateId
 
-    // Check if ID exists (client-side check for now)
-    const testData = localStorage.getItem(`test_${formattedId}`);
+    // Check if ID exists in Supabase
+    try {
+      const { getTest } = await import('../utils/storage');
+      const testData = await getTest(formattedId);
 
-    if (testData) {
-      setError('');
-      navigate(`/play/${formattedId}`);
-    } else {
-      setError('No one created a test with this ID. Please check and try again.');
+      if (testData) {
+        setError('');
+        navigate(`/play/${formattedId}`);
+      } else {
+        setError('Test not found. Please check the ID and try again.');
+      }
+    } catch (err) {
+      console.error('Error checking test ID:', err);
+      setError('An error occurred. Please try again.');
     }
   };
 
