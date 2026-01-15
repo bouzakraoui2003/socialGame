@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import AdUnit from '../components/AdUnit';
+
 import './Home.css';
 
 function Home() {
@@ -63,7 +63,7 @@ function Home() {
         </div>
       </div>
 
-      <AdUnit format="horizontal" label="Support Us" />
+
     </main>
   );
 }

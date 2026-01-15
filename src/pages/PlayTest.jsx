@@ -7,7 +7,7 @@ import { categories } from '../data/categories';
 import { getTest } from '../utils/storage';
 import ProgressBar from '../components/ProgressBar';
 import CategoryCard from '../components/CategoryCard';
-import AdUnit from '../components/AdUnit';
+
 import './PlayTest.css';
 
 const PlayTest = () => {
@@ -161,7 +161,7 @@ const PlayTest = () => {
           </button>
 
         </div>
-        <AdUnit format="horizontal" />
+
       </div>
 
     </div>

@@ -9,7 +9,7 @@ import Share from './pages/Share';
 import Result from './pages/Result';
 import ResultsViewer from './pages/ResultsViewer';
 import Background3D from './components/Background3D';
-import AdUnit from './components/AdUnit';
+
 import './components/Background3D.css';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -20,7 +20,7 @@ function App() {
       <ScrollToTop />
       <div className="app">
         <Background3D />
-        <AdUnit format="horizontal" label="Top Sponsor" />
+
         <div className="content-wrap">
           <Routes>
             <Route path="/" element={<Home />} />
