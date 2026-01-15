@@ -100,7 +100,7 @@ const Share = () => {
     <div className="share-container">
       <div className="share-content">
         <div className="share-header">
-          <h1>🎉 Your Test is Ready!</h1>
+          <h1><span style={{ WebkitTextFillColor: 'initial', textShadow: 'none' }}>🎉</span> Your Test is Ready!</h1>
           <p>Share this link with your friends and see how well they know you!</p>
         </div>
 
