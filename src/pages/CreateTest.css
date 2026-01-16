@@ -227,3 +227,118 @@
     padding: 24px;
   }
 }
+
+/* Warning Mode */
+.create-test-container.warning-mode {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.warning-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  text-align: center;
+  border: 1px solid var(--primary);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+}
+
+.warning-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.warning-title {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.warning-text {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.warning-subtext {
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+/* Header & Skip Indicator */
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.progress-header .progress-container {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.skip-indicator {
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.skip-count {
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin-left: 4px;
+}
+
+.skip-count.zero {
+  color: #ef4444;
+}
+
+/* Navigation & Right Buttons */
+.right-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-skip {
+  color: var(--text-secondary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-skip:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: transparent;
+}
+
+@media (max-width: 600px) {
+  .navigation-buttons {
+    flex-direction: column-reverse;
+    gap: 16px;
+  }
+
+  .navigation-buttons button {
+    width: 100%;
+    min-width: unset;
+    padding: 14px;
+  }
+
+  .right-buttons {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+  }
+
+  .right-buttons button {
+    flex: 1;
+  }
+
+  /* Make Previous button less prominent since it's full width now */
+  .navigation-buttons>button {
+    margin-top: 0;
+  }
+}

@@ -21,9 +21,9 @@ const PlayTest = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
 
-  const currentCategory = categories[currentCategoryIndex];
-  const isLastCategory = currentCategoryIndex === categories.length - 1;
-  const totalCategories = categories.length;
+  // Derived state: subset of categories to play
+  // Initialized as empty, populated after testData loops
+  const [playCategories, setPlayCategories] = useState([]);
 
   // Load test data and player name
   useEffect(() => {
@@ -44,14 +44,28 @@ const PlayTest = () => {
         return;
       }
       setTestData(data);
+
+      // Filter categories: Only include IDs that exist in data.answers
+      // Also implies order might be fixed to categories.js order or we can try to respect something else.
+      // Since creator randomized, keeping consistent order (from categories.js) is safest for consistent UX,
+      // or we just show them in the order they appear in categories.js. 
+      // The answers object is key-value, doesn't inherently preserve creation order unless we saved it.
+      // We'll stick to standard categories order for now.
+      const answeredIds = Object.keys(data.answers).map(Number);
+      const filtered = categories.filter(c => answeredIds.includes(c.id));
+      setPlayCategories(filtered);
     };
     fetchTestData();
   }, [testId, navigate, location.state]);
 
+  const currentCategory = playCategories[currentCategoryIndex];
+  const isLastCategory = currentCategoryIndex === playCategories.length - 1;
+  const totalCategories = playCategories.length;
+
   // Reset selected option when category changes
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (guesses[currentCategory?.id]) {
+    if (currentCategory && guesses[currentCategory.id]) {
       setSelectedOption(guesses[currentCategory.id]);
     } else {
       setSelectedOption(null);
@@ -85,7 +99,8 @@ const PlayTest = () => {
           playerName,
           guesses: newGuesses,
           score: newScore,
-          answers: testData.answers
+          answers: testData.answers,
+          totalQuestions: totalCategories // Pass explicitly so result knows denominator
         }
       });
     } else {
@@ -97,11 +112,11 @@ const PlayTest = () => {
 
   const handlePrevious = () => {
     if (currentCategoryIndex > 0) {
-      // Recalculate score when going back (remove current category's point if it was correct)
+      // Recalculate score when going back
       const correctAnswer = testData?.answers[currentCategory.id];
       const currentGuess = guesses[currentCategory.id];
       if (correctAnswer && currentGuess === correctAnswer) {
-        setScore(prevScore => prevScore - 1);
+        setScore(Math.max(0, score - 1));
       }
 
       setCurrentCategoryIndex(currentCategoryIndex - 1);

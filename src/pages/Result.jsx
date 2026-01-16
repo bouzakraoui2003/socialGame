@@ -14,6 +14,7 @@ const Result = () => {
   const navigate = useNavigate();
   const [resultData, setResultData] = useState(null);
   const [isCopied, setIsCopied] = useState(false);
+  const [animatedScore, setAnimatedScore] = useState(0);
   const hasSavedRef = useRef(false); // Track if we've already saved the result
 
   useEffect(() => {
@@ -23,17 +24,43 @@ const Result = () => {
       if (!hasSavedRef.current) {
         const { playerName, guesses, score, answers } = location.state;
         if (playerName && guesses && answers) {
-          // Fire and forget, but handled cleanly
           savePlayerResult(testId, playerName, guesses, score, answers)
             .catch(err => console.error("Failed to save result", err));
-          hasSavedRef.current = true; // Mark as saved immediately to prevent double-save
+          hasSavedRef.current = true;
         }
       }
     } else {
-      // If no state, redirect to home
       navigate('/');
     }
   }, [location.state, navigate, testId]);
+
+  // Animation Effect
+  useEffect(() => {
+    if (!resultData) return;
+
+    const { score, answers, totalQuestions: passedTotal } = resultData;
+    const total = passedTotal || (answers ? Object.keys(answers).length : 20);
+    const targetPercentage = Math.round((score / total) * 100);
+
+    let startTimestamp = null;
+    const duration = 1500; // 1.5 seconds animation
+
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+
+      // Easing function (easeOutQuart) for smooth slowdown
+      const easeProgress = 1 - Math.pow(1 - progress, 4);
+
+      setAnimatedScore(easeProgress * targetPercentage);
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  }, [resultData]);
 
   const getScoreMessage = (score, total) => {
     const percentage = (score / total) * 100;
@@ -71,9 +98,15 @@ const Result = () => {
     return <div className="result-container"><div className="loading">Loading...</div></div>;
   }
 
-  const { score, guesses, answers, playerName } = resultData;
-  const totalQuestions = answers ? Object.keys(answers).length : categories.length;
+  // Determine total from passed state (totalQuestions) or derive from answers length
+  const { score, guesses, answers, totalQuestions: passedTotal } = resultData;
+  const totalQuestions = passedTotal || (answers ? Object.keys(answers).length : 20); // Fallback to 20 if logic fails
   const scoreMessage = getScoreMessage(score, totalQuestions);
+  const percentageScore = Math.round((score / totalQuestions) * 100);
+
+  // Filter list to only show answered questions
+  const answeredCategoryIds = answers ? Object.keys(answers).map(Number) : [];
+  const displayCategories = categories.filter(c => answeredCategoryIds.includes(c.id));
 
   return (
     <div className="result-container">
@@ -82,23 +115,48 @@ const Result = () => {
           <div className="score-display">
             <span className="score-emoji">{scoreMessage.emoji}</span>
             <h1 className="score-title">Your Score</h1>
-            <div className="score-value">
-              {score}/{totalQuestions}
+            <div className="score-circle-container">
+              <svg className="score-circle" viewBox="0 0 200 200">
+                {/* Background Circle */}
+                <circle
+                  className="circle-bg"
+                  cx="100"
+                  cy="100"
+                  r="90"
+                  strokeWidth="12"
+                />
+                {/* Progress Circle */}
+                <circle
+                  className="circle-progress"
+                  cx="100"
+                  cy="100"
+                  r="90"
+                  strokeWidth="12"
+                  style={{
+                    strokeDasharray: 565.48, // 2 * PI * 90
+                    strokeDashoffset: 565.48 - (565.48 * animatedScore) / 100
+                  }}
+                  transform="rotate(-90 100 100)"
+                />
+              </svg>
+              <div className="score-text-overlay">
+                <div className="score-value big-percentage">
+                  {Math.round(animatedScore)}%
+                </div>
+                <p className="score-fraction">
+                  ({score}/{totalQuestions})
+                </p>
+              </div>
             </div>
-            <p className="score-percentage">
-              {Math.round((score / totalQuestions) * 100)}%
-            </p>
           </div>
 
           <p className="score-message">{scoreMessage.message}</p>
         </div>
 
-        <AdUnit format="horizontal" />
-
         <div className="answers-review">
           <h2>Your Answers</h2>
           <div className="answers-list">
-            {categories.map((category) => {
+            {displayCategories.map((category) => {
               const guess = guesses[category.id];
               const correctAnswer = answers[category.id];
               const isCorrect = guess === correctAnswer;
@@ -115,9 +173,11 @@ const Result = () => {
                     <div className="answer-guess">
                       <strong>Your guess:</strong> {guess || 'Not answered'}
                     </div>
-                    <div className="answer-correct">
-                      <strong>Correct answer:</strong> {correctAnswer || 'Not answered'}
-                    </div>
+                    {!isCorrect && (
+                      <div className="answer-correct">
+                        <strong>Correct answer:</strong> {correctAnswer || 'Not answered'}
+                      </div>
+                    )}
                   </div>
                 </div>
               );

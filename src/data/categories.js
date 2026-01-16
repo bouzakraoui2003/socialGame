@@ -199,5 +199,37 @@ export const categories = [
       { text: "Messi", image: "/messi.jpg" },
       { text: "Ronaldo", image: "/ronaldo.jpg" }
     ]
+  },
+  {
+    id: 21,
+    question: "Communication Style",
+    options: [
+      { text: "Texting", image: "/texting.jpg" },
+      { text: "Calling", image: "/calling.jpg" },
+      { text: "Voice Notes", image: "/voice notes.jpg" },
+      { text: "FaceTime", image: "/faceTime.jpg" }
+    ]
+  },
+  {
+    id: 22,
+    question: "Music Vibe",
+    options: [
+      { text: "Pop", image: "/pop.jpg" },
+      { text: "Rap/Hip-Hop", image: "/rap hiphop.jpg" },
+      { text: "Rock", image: "/rock.jpg" },
+      { text: "Classical/Chill", image: "/classical-chill.jpg" },
+      { text: "Old School", image: "/old school music.jpg" },
+      { text: "Metal", image: "/metal.jpg" },
+      { text: "Instrumental", image: "/instrumental.jpg" },
+      { text: "Jazz", image: "/jazz.jpg" }
+    ]
+  },
+  {
+    id: 23,
+    question: "Phone Team",
+    options: [
+      { text: "iPhone", image: "/iphone.jpg" },
+      { text: "Android", image: "/android.jpg" }
+    ]
   }
 ];
