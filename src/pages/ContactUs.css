@@ -1,0 +1,198 @@
+/* ContactUs.css */
+.contact-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.contact-header {
+    text-align: center;
+}
+
+.contact-header h1 {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    background: linear-gradient(to right, #fff, var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.contact-header p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    transition: transform 0.3s ease, background 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.card-desc {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+/* Base button style */
+.social-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    text-decoration: none;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-size: 200% 200%;
+}
+
+/* Instagram: Moving Gradient */
+.social-btn.instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #f09433);
+    background-size: 300% 300%;
+    color: white;
+}
+
+.social-btn.instagram:hover {
+    animation: gradientMove 3s ease infinite;
+}
+
+/* Facebook: Shiny Reflection */
+.social-btn.facebook {
+    background: linear-gradient(110deg, #1877F2 40%, #5da4ff 50%, #1877F2 60%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    color: white;
+}
+
+.social-btn.facebook:hover {
+    background-position: -100% 0;
+    transition: background-position 0.6s ease;
+}
+
+/* TikTok: Pulsing neon border/glow */
+.social-btn.tiktok {
+    background: #000000;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+
+.social-btn.tiktok::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--radius-md);
+    box-shadow: 0 0 10px #00f2ea, 0 0 20px #ff0050;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-btn.tiktok:hover::before {
+    opacity: 0.5;
+}
+
+.social-btn.tiktok:hover {
+    border-color: #fff;
+    text-shadow: 2px 2px 0px #ff0050, -2px -2px 0px #00f2ea;
+    /* Glitch-like text effect */
+}
+
+/* Email: Clean Glass/White contrast */
+.social-btn.email {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.social-btn.email:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+/* General Hover Elevation */
+.social-btn:hover {
+    transform: scale(1.05) translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-container {
+        padding: 20px;
+    }
+
+    .contact-header h1 {
+        font-size: 2.5rem;
+    }
+}

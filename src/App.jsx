@@ -10,7 +10,12 @@ import Result from './pages/Result';
 import ResultsViewer from './pages/ResultsViewer';
 import Background3D from './components/Background3D';
 
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/ContactUs';
 import './components/Background3D.css';
+import './App.css';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -31,6 +36,12 @@ function App() {
             <Route path="/share/:testId" element={<Share />} />
             <Route path="/result/:testId" element={<Result />} />
             <Route path="/results/:testId" element={<ResultsViewer />} />
+
+            {/* Legal & Info Pages */}
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<ContactUs />} />
           </Routes>
         </div>
         <Footer />
