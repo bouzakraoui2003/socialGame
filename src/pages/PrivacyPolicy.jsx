@@ -63,7 +63,7 @@ const PrivacyPolicy = () => {
                 <h2>5. Data Retention</h2>
                 <p>Test data (names and answers) is stored securely to allow your friends to play. We do not sell your personal data to third parties.</p>
 
-                <h2>5. Contact Us</h2>
+                <h2>6. Contact Us</h2>
                 <p>If you have any questions about this Privacy Policy, please contact us.</p>
             </div>
         </>
