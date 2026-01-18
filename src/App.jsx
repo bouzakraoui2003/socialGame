@@ -18,6 +18,7 @@ import './components/Background3D.css';
 import './App.css';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import CookieConsent from './components/CookieConsent';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           </Routes>
         </div>
         <Footer />
+        <CookieConsent />
       </div>
     </Router>
   );

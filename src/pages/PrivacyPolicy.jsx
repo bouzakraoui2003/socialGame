@@ -52,10 +52,15 @@ const PrivacyPolicy = () => {
                 <ul>
                     <li>Provide, maintain, and improve our services.</li>
                     <li>Generate your personalized "Vibe Check" tests.</li>
-                    <li>Display relevant advertisements.</li>
                 </ul>
 
-                <h2>4. Data Retention</h2>
+                <h2>4. Advertising and Cookies</h2>
+                <p><strong>Google AdSense:</strong> We use Google AdSense to serve advertisements. Google uses cookies to serve ads based on your prior visits to our website or other websites.</p>
+                <p>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our site and/or other sites on the Internet.</p>
+                <p><strong>Your Choices:</strong> You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)' }}>Google Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)' }}>www.aboutads.info</a>.</p>
+                <p>For more information on how Google uses data when you use our partners' sites or apps, please visit <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)' }}>How Google uses data when you use our partners' sites or apps</a>.</p>
+
+                <h2>5. Data Retention</h2>
                 <p>Test data (names and answers) is stored securely to allow your friends to play. We do not sell your personal data to third parties.</p>
 
                 <h2>5. Contact Us</h2>
