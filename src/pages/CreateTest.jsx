@@ -64,6 +64,10 @@ const CreateTest = () => {
       setNameError('Please enter your name');
       return;
     }
+    if (creatorName.trim().split(' ').length < 2) {
+      setNameError('Please enter your Full Name (First & Last name)');
+      return;
+    }
     saveUserName(creatorName.trim());
     // Move to Warning Step instead of straight to questions
     setStep(1);
@@ -153,7 +157,7 @@ const CreateTest = () => {
         {/* Name Input Card */}
         <div className="name-creation-card glass-panel">
           <h1 className="name-title">Create Your Test</h1>
-          <p className="subtitle">First, what's your name?</p>
+          <p className="subtitle">First, what's your <strong>Full Name</strong>?</p>
           <p className="subtitle-small">Your friends will see this when they play.</p>
 
           <form onSubmit={handleNameSubmit} className="name-form">
@@ -165,7 +169,7 @@ const CreateTest = () => {
                   setCreatorName(e.target.value);
                   setNameError('');
                 }}
-                placeholder="Enter your name..."
+                placeholder="Enter your Full Name (First & Last)..."
                 className={`name-input ${nameError ? 'error' : ''}`}
                 autoFocus
                 maxLength={50}

@@ -33,7 +33,12 @@ const PlayIntro = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!playerName.trim()) {
-      setError('Please enter your name or nickname');
+      setError('Please enter your full name');
+      return;
+    }
+
+    if (playerName.trim().split(' ').length < 2) {
+      setError('Please enter your Full Name (First & Last name)');
       return;
     }
 
@@ -92,7 +97,7 @@ const PlayIntro = () => {
         <form onSubmit={handleSubmit} className="name-form glass-panel">
           <div className="name-input-group">
             <label htmlFor="playerName" className="name-label">
-              What's your name or nickname?
+              What's your <strong>Full Name</strong>?
             </label>
             <input
               id="playerName"
@@ -102,7 +107,7 @@ const PlayIntro = () => {
                 setPlayerName(e.target.value);
                 setError('');
               }}
-              placeholder="Enter your name..."
+              placeholder="Enter your Full Name (First & Last)..."
               className={`name-input ${error ? 'error' : ''}`}
               autoFocus
               maxLength={50}

@@ -4,6 +4,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getTest } from '../utils/storage';
+import AdUnit from '../components/AdUnit';
 import './Share.css';
 
 const Share = () => {
@@ -182,6 +183,11 @@ const Share = () => {
             <li>📊 Check the results link to see all player scores</li>
             <li>💾 Save the results link to track the leaderboard!</li>
           </ul>
+        </div>
+
+        {/* Ad Space */}
+        <div style={{ marginTop: '2rem' }}>
+          <AdUnit format="square" />
         </div>
       </div>
     </div>
