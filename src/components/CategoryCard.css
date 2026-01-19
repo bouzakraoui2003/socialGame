@@ -3,10 +3,10 @@
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 200px;
+  min-height: auto;
+  /* Let aspect-ratio determine height */
   cursor: pointer;
   transform-style: preserve-3d;
-  /* Allow vertical scroll but maybe prevent horizontal if needed, or just auto */
   touch-action: pan-y;
 }
 
@@ -20,12 +20,18 @@
   overflow: hidden;
   /* rounded corners clip image */
   transform-style: preserve-3d;
+  background: rgba(255, 255, 255, 0.05);
+  /* Ensure glass effect base */
+  border-radius: var(--radius-lg, 16px);
 }
 
 /* Image Container */
 .card-image-container {
   width: 100%;
-  height: 150px;
+  flex: 1;
+  /* Fill available space */
+  height: auto;
+  /* Remove fixed height */
   overflow: hidden;
   position: relative;
 }

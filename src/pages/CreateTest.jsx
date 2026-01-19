@@ -219,7 +219,7 @@ const CreateTest = () => {
           <div className="category-section">
             <h2 className="category-question">{currentCategory.question}</h2>
 
-            <div className={`options-grid ${currentCategory.options.length <= 2 ? 'grid-center-limited' : ''}`}>
+            <div className={`options-grid grid-count-${currentCategory.options.length} ${currentCategory.options.length <= 2 ? 'grid-center-limited' : ''}`}>
               {currentCategory.options.map((option, index) => {
                 const optionText = typeof option === 'object' ? option.text : option;
                 const isSelected = selectedOption === optionText;
