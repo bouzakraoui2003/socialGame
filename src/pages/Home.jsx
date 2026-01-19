@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { fetchComments, postComment, likeComment } from '../services/commentsService';
 import { useNavigate, Link } from 'react-router-dom';
+import { FaRocket, FaPalette, FaLock, FaBolt, FaMobileAlt } from 'react-icons/fa';
 import './Home.css';
+
 function Home() {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
@@ -100,17 +102,17 @@ function Home() {
 
       <div className="features-grid">
         <div className="feature-card glass-panel">
-          <span className="feature-icon">🚀</span>
+          <FaRocket className="feature-icon" style={{ color: '#f59e0b' }} />
           <h3>Fast</h3>
           <p>Instant results and real-time sharing.</p>
         </div>
         <div className="feature-card glass-panel">
-          <span className="feature-icon">🎨</span>
+          <FaPalette className="feature-icon" style={{ color: '#d946ef' }} />
           <h3>Custom</h3>
           <p>Design your own tests with unique styles.</p>
         </div>
         <div className="feature-card glass-panel">
-          <span className="feature-icon">🔒</span>
+          <FaLock className="feature-icon" style={{ color: '#10b981' }} />
           <h3>Private</h3>
           <p>Your data is yours. Secure and ephemeral.</p>
         </div>
@@ -159,19 +161,19 @@ function Home() {
         <h2 className="section-title">Why Choose Social 2.0?</h2>
         <div className="features-detailed">
           <div className="detail-item">
-            <h3>🔒 Privacy First</h3>
+            <h3><FaLock style={{ color: '#10b981', marginRight: '8px', verticalAlign: 'middle' }} /> Privacy First</h3>
             <p>We don't ask for your email, phone number, or firstborn child. Your quizzes are ephemeral and your data stays yours.</p>
           </div>
           <div className="detail-item">
-            <h3>🎨 Limitless Customization</h3>
+            <h3><FaPalette style={{ color: '#d946ef', marginRight: '8px', verticalAlign: 'middle' }} /> Limitless Customization</h3>
             <p>From neon aesthetics to dark mode vibes, our design engine lets you create a test that actually looks like <em>you</em>.</p>
           </div>
           <div className="detail-item">
-            <h3>⚡ Instant Feedback</h3>
+            <h3><FaBolt style={{ color: '#eab308', marginRight: '8px', verticalAlign: 'middle' }} /> Instant Feedback</h3>
             <p>No waiting for results. Watch live as your friends take the test and see who tops the leaderboard in real-time.</p>
           </div>
           <div className="detail-item">
-            <h3>📱 Cross-Platform Magic</h3>
+            <h3><FaMobileAlt style={{ color: '#3b82f6', marginRight: '8px', verticalAlign: 'middle' }} /> Cross-Platform Magic</h3>
             <p>Works perfectly on Instagram stories, TikTok bio links, WhatsApp groups, and Discord servers. One link, everywhere.</p>
           </div>
         </div>
@@ -253,7 +255,7 @@ function Home() {
       </div>
 
 
-    </main>
+    </main >
   );
 }
 
