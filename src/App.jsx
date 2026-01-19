@@ -14,6 +14,9 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
+
 import './components/Background3D.css';
 import './App.css';
 import Footer from './components/Footer';
@@ -37,6 +40,10 @@ function App() {
             <Route path="/share/:testId" element={<Share />} />
             <Route path="/result/:testId" element={<Result />} />
             <Route path="/results/:testId" element={<ResultsViewer />} />
+
+            {/* Content Pages */}
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
 
             {/* Legal & Info Pages */}
             <Route path="/privacy" element={<PrivacyPolicy />} />

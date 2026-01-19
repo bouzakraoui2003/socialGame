@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchComments, postComment, likeComment } from '../services/commentsService';
 import { useNavigate, Link } from 'react-router-dom';
 import { FaRocket, FaPalette, FaLock, FaBolt, FaMobileAlt } from 'react-icons/fa';
+import AdUnit from '../components/AdUnit';
 import './Home.css';
 
 function Home() {
@@ -100,6 +101,11 @@ function Home() {
         </div>
       </div>
 
+      {/* Ad Space - High Visibility */}
+      <div style={{ margin: '2rem auto', maxWidth: '100%', display: 'flex', justifyContent: 'center' }}>
+        <AdUnit />
+      </div>
+
       <div className="features-grid">
         <div className="feature-card glass-panel">
           <FaRocket className="feature-icon" style={{ color: '#f59e0b' }} />
@@ -137,6 +143,11 @@ function Home() {
             <p>Watch the answers roll in and discover who really knows you best!</p>
           </div>
         </div>
+      </div>
+
+      {/* Ad Space Mid-Page */}
+      <div style={{ margin: '2rem auto', maxWidth: '100%', display: 'flex', justifyContent: 'center' }}>
+        <AdUnit />
       </div>
 
       <div className="content-section glass-panel" style={{ marginTop: '2rem' }}>
@@ -254,6 +265,10 @@ function Home() {
         </div>
       </div>
 
+      {/* Ad Space Bottom */}
+      <div style={{ margin: '2rem auto', maxWidth: '100%', display: 'flex', justifyContent: 'center' }}>
+        <AdUnit />
+      </div>
 
     </main >
   );

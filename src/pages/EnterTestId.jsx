@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AdUnit from '../components/AdUnit';
 import './EnterTestId.css';
 
 const EnterTestId = () => {
@@ -61,10 +62,14 @@ const EnterTestId = () => {
         >
           Go Back Home
         </button>
+
+        {/* Ad Space */}
+        <div style={{ marginTop: '2rem' }}>
+          <AdUnit format="square" />
+        </div>
       </div>
     </div>
   );
 };
 
 export default EnterTestId;
-

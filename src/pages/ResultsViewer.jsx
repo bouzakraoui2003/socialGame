@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getTest, getPlayerResults } from '../utils/storage';
 import { categories } from '../data/categories';
+import AdUnit from '../components/AdUnit';
 import './ResultsViewer.css';
 
 const ResultsViewer = () => {
@@ -123,6 +124,11 @@ const ResultsViewer = () => {
             </div>
             <div className="stat-label">Highest Score</div>
           </div>
+        </div>
+
+        {/* Ad Space */}
+        <div style={{ margin: '2rem 0' }}>
+          <AdUnit />
         </div>
 
         {results.length === 0 ? (

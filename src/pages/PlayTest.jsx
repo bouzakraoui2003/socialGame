@@ -7,6 +7,7 @@ import { categories } from '../data/categories';
 import { getTest } from '../utils/storage';
 import ProgressBar from '../components/ProgressBar';
 import CategoryCard from '../components/CategoryCard';
+import AdUnit from '../components/AdUnit';
 
 import './PlayTest.css';
 
@@ -174,7 +175,11 @@ const PlayTest = () => {
           >
             {isLastCategory ? 'See Results' : 'Next'}
           </button>
+        </div>
 
+        {/* Ad Space */}
+        <div style={{ marginTop: '2rem' }}>
+          <AdUnit format="square" />
         </div>
 
       </div>
@@ -184,4 +189,3 @@ const PlayTest = () => {
 };
 
 export default PlayTest;
-

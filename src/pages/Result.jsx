@@ -153,6 +153,11 @@ const Result = () => {
           <p className="score-message">{scoreMessage.message}</p>
         </div>
 
+        {/* Ad Space */}
+        <div style={{ marginBottom: '2rem' }}>
+          <AdUnit />
+        </div>
+
         <div className="answers-review">
           <h2>Your Answers</h2>
           <div className="answers-list">
