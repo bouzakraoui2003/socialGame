@@ -76,6 +76,9 @@ const AdsterraBanner = ({ variant = 'responsive' }) => {
         iframe.style.border = 'none';
         iframe.style.overflow = 'hidden';
         iframe.scrolling = 'no';
+        // Sandbox the iframe to prevent top-level redirects
+        // "allow-popups" is preserved so users can still click ads to open them
+        iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
 
         container.appendChild(iframe);
 
