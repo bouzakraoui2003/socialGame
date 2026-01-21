@@ -23,8 +23,11 @@ const PlayTest = () => {
   const [score, setScore] = useState(0);
 
   // Derived state: subset of categories to play
-  // Initialized as empty, populated after testData loops
   const [playCategories, setPlayCategories] = useState([]);
+
+  // Loading state
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   // Load test data and player name
   useEffect(() => {
@@ -46,18 +49,60 @@ const PlayTest = () => {
       }
       setTestData(data);
 
-      // Filter categories: Only include IDs that exist in data.answers
-      // Also implies order might be fixed to categories.js order or we can try to respect something else.
-      // Since creator randomized, keeping consistent order (from categories.js) is safest for consistent UX,
-      // or we just show them in the order they appear in categories.js. 
-      // The answers object is key-value, doesn't inherently preserve creation order unless we saved it.
-      // We'll stick to standard categories order for now.
       const answeredIds = Object.keys(data.answers).map(Number);
       const filtered = categories.filter(c => answeredIds.includes(c.id));
       setPlayCategories(filtered);
+
+      // Start Image Preloading
+      preloadImages(filtered);
     };
     fetchTestData();
   }, [testId, navigate, location.state]);
+
+  const preloadImages = async (categoriesToLoad) => {
+    const imageUrls = categoriesToLoad.flatMap(cat =>
+      cat.options
+        .filter(opt => typeof opt === 'object' && opt.image)
+        .map(opt => opt.image)
+    );
+
+    if (imageUrls.length === 0) {
+      setLoadingProgress(100);
+      setImagesLoaded(true);
+      return;
+    }
+
+    let loadedCount = 0;
+    const total = imageUrls.length;
+
+    // Helper to update progress
+    const updateProgress = () => {
+      loadedCount++;
+      setLoadingProgress(Math.round((loadedCount / total) * 100));
+    };
+
+    const promises = imageUrls.map(src => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => {
+          updateProgress();
+          resolve();
+        };
+        img.onerror = () => {
+          console.warn(`Failed to preload image: ${src}`);
+          updateProgress();
+          resolve();
+        };
+      });
+    });
+
+    await Promise.all(promises);
+    // Small delay to ensure smooth transition
+    setTimeout(() => {
+      setImagesLoaded(true);
+    }, 500);
+  };
 
   const currentCategory = playCategories[currentCategoryIndex];
   const isLastCategory = currentCategoryIndex === playCategories.length - 1;
@@ -125,10 +170,20 @@ const PlayTest = () => {
     }
   };
 
-  if (!testData || !currentCategory) {
+  if (!testData || !currentCategory || !imagesLoaded) {
     return (
-      <div className="play-test-container">
-        <div className="loading">Loading test...</div>
+      <div className="play-test-container loading-container">
+        <div className="loading-content">
+          <h2 className="loading-title">Preparing your test...</h2>
+
+          <div className="loading-bar-track">
+            <div
+              className="loading-bar-fill"
+              style={{ width: `${loadingProgress}%` }}
+            ></div>
+          </div>
+          <p className="loading-text">{loadingProgress}% Ready</p>
+        </div>
       </div>
     );
   }
@@ -148,12 +203,13 @@ const PlayTest = () => {
               const isSelected = selectedOption === optionText;
 
               return (
-                <CategoryCard
-                  key={index}
-                  option={option}
-                  isSelected={isSelected}
-                  onClick={() => handleOptionSelect(optionText)}
-                />
+                <div key={index} className="card-wrapper">
+                  <CategoryCard
+                    option={option}
+                    isSelected={isSelected}
+                    onClick={() => handleOptionSelect(optionText)}
+                  />
+                </div>
               );
             })}
           </div>

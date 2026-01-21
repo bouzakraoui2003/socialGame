@@ -116,20 +116,24 @@
 }
 
 /* Animations */
-@keyframes slideUp {
-  from {
+@keyframes popIn {
+  0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: scale(0.8) translateY(30px);
   }
 
-  to {
+  60% {
+    transform: scale(1.05) translateY(-10px);
+  }
+
+  100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1) translateY(0);
   }
 }
 
 .options-grid>* {
-  animation: slideUp 0.5s var(--ease-spring) backwards;
+  animation: popIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
 }
 
 .options-grid>*:nth-child(1) {
@@ -137,25 +141,136 @@
 }
 
 .options-grid>*:nth-child(2) {
-  animation-delay: 0.15s;
-}
-
-.options-grid>*:nth-child(3) {
   animation-delay: 0.2s;
 }
 
-.options-grid>*:nth-child(4) {
-  animation-delay: 0.25s;
-}
-
-.options-grid>*:nth-child(5) {
+.options-grid>*:nth-child(3) {
   animation-delay: 0.3s;
 }
 
+.options-grid>*:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.options-grid>*:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
 .options-grid>*:nth-child(6) {
-  animation-delay: 0.35s;
+  animation-delay: 0.6s;
 }
 
 .options-grid>*:nth-child(7) {
-  animation-delay: 0.4s;
+  animation-delay: 0.7s;
+}
+
+.options-grid>*:nth-child(8) {
+  animation-delay: 0.8s;
+}
+
+/* Loading Screen Styles */
+.loading-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: transparent;
+  /* Or rely on global background */
+}
+
+.loading-content {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.loading-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.loading-bar-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: 4px;
+  transition: width 0.3s ease-out;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+  position: relative;
+}
+
+/* Animated shine effect on the progress bar */
+.loading-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
+  transform: translateX(-100%);
+  animation: shimmer 1.5s infinite;
+}
+
+.loading-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

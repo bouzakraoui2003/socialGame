@@ -51,7 +51,7 @@ function CategoryCard({ option, onClick, isSelected }) {
       <div className="category-card-content glass-card">
         {image ? (
           <div className="card-image-container">
-            <img src={image} alt={text} className="card-image" loading="lazy" />
+            <img src={image} alt={text} className="card-image" />
             <div className="image-overlay"></div>
           </div>
         ) : (
