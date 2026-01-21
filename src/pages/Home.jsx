@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { fetchComments, postComment, likeComment } from '../services/commentsService';
 import { useNavigate, Link } from 'react-router-dom';
@@ -8,12 +8,24 @@ import './Home.css';
 
 function Home() {
   const { t } = useTranslation(); // Hook for translations
+  const videoRef = useRef(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [username, setUsername] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [likedCommentIds, setLikedCommentIds] = useState(new Set());
+
+  // Force video playback for iOS
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log("Video autoplay failed:", error);
+        // Fallback: show controls if autoplay fails
+        // videoRef.current.controls = true; 
+      });
+    }
+  }, []);
 
   useEffect(() => {
     loadComments();
@@ -88,12 +100,14 @@ function Home() {
         <div className="hero-visual animate-float">
           <div className="glass-card visual-card">
             <video
+              ref={videoRef}
               src="/detective_video.mp4"
               className="visual-card-bg"
               autoPlay
               loop
               muted
               playsInline
+              webkit-playsinline="true" /* Explicit IOS support */
             />
             <div className="card-info">
               <h3>{t('home.visual_card_title')}</h3>
