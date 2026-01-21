@@ -22,12 +22,14 @@ import './App.css';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import CookieConsent from './components/CookieConsent';
+import LanguageSwitcher from './components/LanguageSwitcher';
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
       <div className="app">
+        <LanguageSwitcher />
         <Background3D />
 
         <div className="content-wrap">

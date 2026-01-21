@@ -58,6 +58,20 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
+  direction: ltr;
+  /* Default LTR */
+}
+
+/* RTL Global Support */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Tahoma', 'Arial', sans-serif;
+  /* Better Arabic fonts */
+}
+
+[dir="rtl"] .app {
+  direction: rtl;
 }
 
 #root {

@@ -5,6 +5,7 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { categories } from '../data/categories';
 import { generateId } from '../utils/generateId';
 import { saveTest, saveUserName, getUserName } from '../utils/storage';
@@ -14,6 +15,7 @@ import AdUnit from '../components/AdUnit';
 import './CreateTest.css';
 
 const CreateTest = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   // We'll manage a local randomized copy of categories
   const [randomizedCategories, setRandomizedCategories] = useState([]);
@@ -61,11 +63,11 @@ const CreateTest = () => {
   const handleNameSubmit = (e) => {
     e.preventDefault();
     if (!creatorName.trim()) {
-      setNameError('Please enter your name');
+      setNameError(t('create.error_empty'));
       return;
     }
     if (creatorName.trim().split(' ').length < 2) {
-      setNameError('Please enter your Full Name (First & Last name)');
+      setNameError(t('create.error_short'));
       return;
     }
     saveUserName(creatorName.trim());
@@ -156,9 +158,9 @@ const CreateTest = () => {
       <div className="create-test-container name-input-mode">
         {/* Name Input Card */}
         <div className="name-creation-card glass-panel">
-          <h1 className="name-title">Create Your Test</h1>
-          <p className="subtitle">First, what's your <strong>Full Name</strong>?</p>
-          <p className="subtitle-small">Your friends will see this when they play.</p>
+          <h1 className="name-title">{t('create.title')}</h1>
+          <p className="subtitle">{t('create.subtitle_1')} <strong>{t('create.subtitle_2')}</strong>?</p>
+          <p className="subtitle-small">{t('create.subtitle_small')}</p>
 
           <form onSubmit={handleNameSubmit} className="name-form">
             <div className="name-input-group">
@@ -169,7 +171,7 @@ const CreateTest = () => {
                   setCreatorName(e.target.value);
                   setNameError('');
                 }}
-                placeholder="Enter your Full Name (First & Last)..."
+                placeholder={t('create.placeholder')}
                 className={`name-input ${nameError ? 'error' : ''}`}
                 autoFocus
                 maxLength={50}
@@ -178,7 +180,7 @@ const CreateTest = () => {
             </div>
 
             <button type="submit" className="btn btn-primary btn-large">
-              Next ➡️
+              {t('create.next')}
             </button>
           </form>
         </div>
@@ -192,15 +194,15 @@ const CreateTest = () => {
       <div className="create-test-container warning-mode">
         <div className="warning-card glass-panel animate-fade-in">
           <span className="warning-icon">⚠️</span>
-          <h2 className="warning-title">Before you start</h2>
+          <h2 className="warning-title">{t('create.warning_title')}</h2>
           <p className="warning-text">
-            You will be able to skip <strong>only 3 questions</strong>.
+            {t('create.warning_text_1')} <strong>{t('create.warning_text_2')}</strong>.
           </p>
           <p className="warning-subtext">
-            Be careful! Your friends will only answer the questions you pick.
+            {t('create.warning_subtext')}
           </p>
           <button className="btn btn-primary btn-large pulse-on-hover" onClick={handleWarningAck}>
-            I Understand, Let's Go! 🚀
+            {t('create.warning_button')}
           </button>
         </div>
       </div>
@@ -216,24 +218,31 @@ const CreateTest = () => {
           <div className="progress-header">
             <ProgressBar current={answeredCount + (selectedOption ? 1 : 0)} total={20} />
             <div className="skip-indicator">
-              Skips left: <span className={`skip-count ${remainingSkips === 0 ? 'zero' : ''}`}>{remainingSkips}</span>
+              {t('create.skips_left')} <span className={`skip-count ${remainingSkips === 0 ? 'zero' : ''}`}>{remainingSkips}</span>
             </div>
           </div>
 
           <div className="category-section">
-            <h2 className="category-question">{currentCategory.question}</h2>
+            <h2 className="category-question">{t(`categories.${currentCategory.id}.question`, currentCategory.question)}</h2>
 
             <div className={`options-grid grid-count-${currentCategory.options.length} ${currentCategory.options.length <= 2 ? 'grid-center-limited' : ''}`}>
               {currentCategory.options.map((option, index) => {
-                const optionText = typeof option === 'object' ? option.text : option;
-                const isSelected = selectedOption === optionText;
+                const originalText = typeof option === 'object' ? option.text : option;
+                const translatedText = t(`categories.${currentCategory.id}.options.${index}`, originalText);
+
+                // Construct display option with translated text, keeping image
+                const displayOption = typeof option === 'object'
+                  ? { ...option, text: translatedText }
+                  : { text: translatedText, image: null };
+
+                const isSelected = selectedOption === originalText;
 
                 return (
                   <CategoryCard
                     key={index}
-                    option={option}
+                    option={displayOption}
                     isSelected={isSelected}
-                    onClick={() => handleOptionSelect(optionText)}
+                    onClick={() => handleOptionSelect(originalText)}
                   />
                 );
               })}
@@ -242,7 +251,7 @@ const CreateTest = () => {
 
           <div className="navigation-buttons">
             <button className="btn btn-secondary" onClick={handlePrevious}>
-              Previous
+              {t('create.previous')}
             </button>
 
             <div className="right-buttons">
@@ -252,7 +261,7 @@ const CreateTest = () => {
                 disabled={remainingSkips <= 0}
                 title={remainingSkips <= 0 ? "No skips left!" : "Skip this question"}
               >
-                Skip ({remainingSkips})
+                {t('create.skip')} ({remainingSkips})
               </button>
 
               <button
@@ -260,7 +269,7 @@ const CreateTest = () => {
                 onClick={handleNext}
                 disabled={!selectedOption || isSaving}
               >
-                {isSaving ? 'Saving...' : (isLastCategory ? 'Finish' : 'Next')}
+                {isSaving ? t('create.saving') : (isLastCategory ? t('create.finish') : t('quiz.next'))}
               </button>
             </div>
           </div>

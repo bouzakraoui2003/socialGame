@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './CookieConsent.css';
 
 const CookieConsent = () => {
+    const { t } = useTranslation();
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -25,13 +27,12 @@ const CookieConsent = () => {
         <div className="cookie-consent-banner">
             <div className="cookie-content">
                 <p>
-                    We use cookies to improve your experience and deliver personalized ads. 
-                    By using our site, you acknowledge that you have read and understand our 
-                    <Link to="/privacy"> Privacy Policy</Link>.
+                    {t('cookie.message')}
+                    <Link to="/privacy"> {t('cookie.policy_link')}</Link>.
                 </p>
                 <div className="cookie-actions">
                     <button onClick={handleAccept} className="btn-accept">
-                        Got it!
+                        {t('cookie.accept')}
                     </button>
                 </div>
             </div>

@@ -3,11 +3,13 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { getTest } from '../utils/storage';
 import AdUnit from '../components/AdUnit';
 import './Share.css';
 
 const Share = () => {
+  const { t } = useTranslation();
   const { testId } = useParams();
   const navigate = useNavigate();
   const [creatorName, setCreatorName] = useState('');
@@ -32,7 +34,7 @@ const Share = () => {
   };
 
   // Construct the creative message
-  const shareMessage = `Your friend ${creatorName || 'creator'} wants to find out how much you know about them! Take the quiz:`;
+  const shareMessage = `${t('share.message_part1')} ${creatorName || 'creator'} ${t('share.message_part2')}`;
   const shareableLink = getShareableLink();
   const fullShareText = `${shareMessage} ${shareableLink}`;
 
@@ -101,12 +103,12 @@ const Share = () => {
     <div className="share-container">
       <div className="share-content">
         <div className="share-header">
-          <h1><span style={{ WebkitTextFillColor: 'initial', textShadow: 'none' }}>🎉</span> Your Test is Ready!</h1>
-          <p>Share this link with your friends and see how well they know you!</p>
+          <h1><span style={{ WebkitTextFillColor: 'initial', textShadow: 'none' }}>🎉</span> {t('share.header')}</h1>
+          <p>{t('share.subtitle')}</p>
         </div>
 
         <div className="id-container-highlight glass-card">
-          <span className="id-label">Test ID:</span>
+          <span className="id-label">{t('share.test_id')}</span>
           <h2 className="test-id-display">{testId}</h2>
         </div>
 
@@ -117,13 +119,13 @@ const Share = () => {
             onClick={handleNativeShare}
             disabled={copiedSection === 'main'}
           >
-            {copiedSection === 'main' ? 'Link & Message Copied! ✅' : '📤 Share Link'}
+            {copiedSection === 'main' ? t('share.btn_copied') : t('share.btn_share')}
           </button>
         </div>
 
         <div className="link-container">
           <div className="link-section">
-            <label className="link-label">Or copy link manually:</label>
+            <label className="link-label">{t('share.manual_label')}</label>
             <div className="link-box">
               <input
                 type="text"
@@ -136,13 +138,13 @@ const Share = () => {
                 onClick={handleCopyLink}
                 disabled={copiedSection === 'manual'}
               >
-                {copiedSection === 'manual' ? 'Copied! ✅' : 'Copy Link'}
+                {copiedSection === 'manual' ? t('share.btn_copy_done') : t('share.btn_copy')}
               </button>
             </div>
           </div>
 
           <div className="link-section">
-            <label className="link-label">📊 Your results link (save this!):</label>
+            <label className="link-label">{t('share.results_label')}</label>
             <div className="link-box">
               <input
                 type="text"
@@ -155,7 +157,7 @@ const Share = () => {
                 onClick={handleCopyResultsLink}
                 disabled={copiedSection === 'results'}
               >
-                {copiedSection === 'results' ? 'Copied! ✅' : 'Copy Result Link'}
+                {copiedSection === 'results' ? t('share.btn_copy_done') : t('share.btn_copy_results')}
               </button>
             </div>
           </div>
@@ -166,22 +168,22 @@ const Share = () => {
             className="btn btn-outline"
             onClick={() => navigate(`/results/${testId}`)}
           >
-            View Results 📊
+            {t('share.view_results')}
           </button>
           <button className="btn btn-secondary" onClick={handleCreateNew}>
-            Create Another Test
+            {t('share.create_another')}
           </button>
           <button className="btn btn-outline" onClick={() => navigate('/')}>
-            Go Home
+            {t('share.home')}
           </button>
         </div>
 
         <div className="share-info">
-          <p><strong>How it works:</strong></p>
+          <p><strong>{t('share.how_works')}</strong></p>
           <ul className="share-instructions">
-            <li>📤 Click "Share With Friends" to send the test directly!</li>
-            <li>📊 Check the results link to see all player scores</li>
-            <li>💾 Save the results link to track the leaderboard!</li>
+            <li>{t('share.instruction_1')}</li>
+            <li>{t('share.instruction_2')}</li>
+            <li>{t('share.instruction_3')}</li>
           </ul>
         </div>
 

@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const TermsOfService = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     return (
@@ -32,26 +34,26 @@ const TermsOfService = () => {
             </button>
 
             <div className="policy-container glass-panel" style={{ maxWidth: '800px', margin: '40px auto', padding: '40px', color: '#fff' }}>
-                <h1>Terms of Service</h1>
-                <p>Last updated: January 16, 2026</p>
+                <h1>{t('terms.title')}</h1>
+                <p>{t('terms.last_updated')}</p>
 
-                <h2>1. Acceptance of Terms</h2>
-                <p>By accessing or using Social 2.0, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+                <h2>{t('terms.accept_title')}</h2>
+                <p>{t('terms.accept_text')}</p>
 
-                <h2>2. Description of Service</h2>
-                <p>Social 2.0 is an entertainment platform that allows users to create and share personality quizzes ("Vibe Checks") with friends.</p>
+                <h2>{t('terms.desc_title')}</h2>
+                <p>{t('terms.desc_text')}</p>
 
-                <h2>3. User Conduct</h2>
-                <p>You agree not to use the service for any illegal or unauthorized purpose. You are solely responsible for your conduct and any data you submit to the service.</p>
+                <h2>{t('terms.conduct_title')}</h2>
+                <p>{t('terms.conduct_text')}</p>
 
-                <h2>4. Intellectual Property</h2>
-                <p>The content, design, and functionality of Social 2.0 are owned by us and are protected by international copyright laws.</p>
+                <h2>{t('terms.ip_title')}</h2>
+                <p>{t('terms.ip_text')}</p>
 
-                <h2>5. Disclaimer of Warranties</h2>
-                <p>The service is provided on an "as is" and "as available" basis. We make no warranties, expressed or implied, regarding the operation of the service or the information, content, or materials included.</p>
+                <h2>{t('terms.disclaimer_title')}</h2>
+                <p>{t('terms.disclaimer_text')}</p>
 
-                <h2>6. Limitation of Liability</h2>
-                <p>In no event shall Social 2.0 be liable for any direct, indirect, incidental, special, or consequential damages arising out of or in any way connected with the use of our service.</p>
+                <h2>{t('terms.liability_title')}</h2>
+                <p>{t('terms.liability_text')}</p>
             </div>
         </>
     );

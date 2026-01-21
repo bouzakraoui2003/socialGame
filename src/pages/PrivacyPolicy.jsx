@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { FaArrowLeft } from 'react-icons/fa';
 import './Home.css'; // Re-use main styles for consistency
 
 const PrivacyPolicy = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     return (
@@ -33,35 +35,35 @@ const PrivacyPolicy = () => {
             </button>
 
             <div className="policy-container glass-panel" style={{ maxWidth: '800px', margin: '40px auto', padding: '40px', color: '#fff' }}>
-                <h1>Privacy Policy</h1>
-                <p>Last updated: January 16, 2026</p>
+                <h1>{t('privacy.title')}</h1>
+                <p>{t('privacy.last_updated')}</p>
 
-                <h2>1. Introduction</h2>
-                <p>Welcome to Social 2.0 ("we," "our," or "us"). We are committed to protecting your privacy. This Privacy Policy explains how your information is collected, used, and disclosed by Social 2.0.</p>
+                <h2>{t('privacy.intro_title')}</h2>
+                <p>{t('privacy.intro_text')}</p>
 
-                <h2>2. Information We Collect</h2>
-                <p>We collect information you provide directly to us, such as when you create a test, including your name and the answers you select. We do not require you to create an account or provide an email address.</p>
+                <h2>{t('privacy.info_title')}</h2>
+                <p>{t('privacy.info_text')}</p>
 
-                <h3>Cookies and Web Beacons</h3>
-                <p>We use third-party services, specifically Adsterra, to serve ads. These services may use cookies to serve ads based on your prior visits to our website or other websites.</p>
-                <p>Adsterra's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our site and/or other sites on the Internet.</p>
+                <h3>{t('privacy.cookies_title')}</h3>
+                <p>{t('privacy.cookies_text_1')}</p>
+                <p>{t('privacy.cookies_text_2')}</p>
 
-                <h2>3. How We Use Your Information</h2>
-                <p>We use the information we collect to:</p>
+                <h2>{t('privacy.use_title')}</h2>
+                <p>{t('privacy.use_text')}</p>
                 <ul>
-                    <li>Provide, maintain, and improve our services.</li>
-                    <li>Generate your personalized "Vibe Check" tests.</li>
+                    <li>{t('privacy.use_list_1')}</li>
+                    <li>{t('privacy.use_list_2')}</li>
                 </ul>
 
-                <h2>4. Advertising and Cookies</h2>
-                <p><strong>Adsterra:</strong> We use Adsterra to serve advertisements. Adsterra uses cookies to serve ads based on your prior visits to our website or other websites.</p>
-                <p><strong>Your Choices:</strong> You can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)' }}>www.aboutads.info</a>.</p>
+                <h2>{t('privacy.ads_title')}</h2>
+                <p>{t('privacy.ads_text_1')}</p>
+                <p>{t('privacy.ads_text_2')} <a href="https://www.aboutads.info/" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)' }}>www.aboutads.info</a>.</p>
 
-                <h2>5. Data Retention</h2>
-                <p>Test data (names and answers) is stored securely to allow your friends to play. We do not sell your personal data to third parties.</p>
+                <h2>{t('privacy.retention_title')}</h2>
+                <p>{t('privacy.retention_text')}</p>
 
-                <h2>6. Contact Us</h2>
-                <p>If you have any questions about this Privacy Policy, please contact us.</p>
+                <h2>{t('privacy.contact_title')}</h2>
+                <p>{t('privacy.contact_text')}</p>
             </div>
         </>
     );

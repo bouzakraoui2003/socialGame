@@ -3,12 +3,14 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { categories } from '../data/categories';
 import { savePlayerResult } from '../utils/storage';
 import AdUnit from '../components/AdUnit';
 import './Result.css';
 
 const Result = () => {
+  const { t } = useTranslation();
   const { testId } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -66,15 +68,15 @@ const Result = () => {
     const percentage = (score / total) * 100;
 
     if (percentage === 100) {
-      return { message: "Perfect! You know them inside out! 🎉", emoji: "🏆" };
+      return { message: t('result.score_perfect'), emoji: "🏆" };
     } else if (percentage >= 80) {
-      return { message: "Excellent! You're a great friend! 🌟", emoji: "✨" };
+      return { message: t('result.score_excellent'), emoji: "🌟" };
     } else if (percentage >= 60) {
-      return { message: "Good job! You know them pretty well! 👍", emoji: "😊" };
+      return { message: t('result.score_good'), emoji: "👍" };
     } else if (percentage >= 40) {
-      return { message: "Not bad, but there's room for improvement! 💪", emoji: "🤔" };
+      return { message: t('result.score_average'), emoji: "💪" };
     } else {
-      return { message: "Better luck next time! Keep trying! 💪", emoji: "🎯" };
+      return { message: t('result.score_bad'), emoji: "🎯" };
     }
   };
 
@@ -94,8 +96,18 @@ const Result = () => {
     navigate('/create');
   };
 
+  const getTranslatedOption = (category, optionText) => {
+    if (!optionText) return t('result.not_answered');
+    const index = category.options.findIndex(opt => {
+      const text = typeof opt === 'object' ? opt.text : opt;
+      return text === optionText;
+    });
+    if (index === -1) return optionText;
+    return t(`categories.${category.id}.options.${index}`, optionText);
+  };
+
   if (!resultData) {
-    return <div className="result-container"><div className="loading">Loading...</div></div>;
+    return <div className="result-container"><div className="loading">{t('result.loading')}</div></div>;
   }
 
   // Determine total from passed state (totalQuestions) or derive from answers length
@@ -114,7 +126,7 @@ const Result = () => {
         <div className="result-header">
           <div className="score-display">
             <span className="score-emoji">{scoreMessage.emoji}</span>
-            <h1 className="score-title">Your Score</h1>
+            <h1 className="score-title">{t('result.score_title')}</h1>
             <div className="score-circle-container">
               <svg className="score-circle" viewBox="0 0 200 200">
                 {/* Background Circle */}
@@ -159,12 +171,15 @@ const Result = () => {
         </div>
 
         <div className="answers-review">
-          <h2>Your Answers</h2>
+          <h2>{t('result.your_answers')}</h2>
           <div className="answers-list">
             {displayCategories.map((category) => {
               const guess = guesses[category.id];
               const correctAnswer = answers[category.id];
               const isCorrect = guess === correctAnswer;
+
+              const translatedGuess = getTranslatedOption(category, guess);
+              const translatedCorrect = getTranslatedOption(category, correctAnswer);
 
               return (
                 <div key={category.id} className={`answer-item ${isCorrect ? 'correct' : 'incorrect'}`}>
@@ -172,15 +187,15 @@ const Result = () => {
                     <span className="answer-icon">
                       {isCorrect ? '✓' : '✗'}
                     </span>
-                    <h3 className="answer-question">{category.question}</h3>
+                    <h3 className="answer-question">{t(`categories.${category.id}.question`, category.question)}</h3>
                   </div>
                   <div className="answer-details">
                     <div className="answer-guess">
-                      <strong>Your guess:</strong> {guess || 'Not answered'}
+                      <strong>{t('result.guess')}</strong> {translatedGuess}
                     </div>
                     {!isCorrect && (
                       <div className="answer-correct">
-                        <strong>Correct answer:</strong> {correctAnswer || 'Not answered'}
+                        <strong>{t('result.correct')}</strong> {translatedCorrect}
                       </div>
                     )}
                   </div>
@@ -192,14 +207,14 @@ const Result = () => {
 
         <div className="result-actions">
           <button className="btn btn-primary" onClick={handleCreateNew}>
-            Create Your Own Test
+            {t('result.create_own')}
           </button>
           <button
             className={`btn btn-secondary ${isCopied ? 'btn-success' : ''}`}
             onClick={handleCopyLink}
             disabled={isCopied}
           >
-            {isCopied ? 'Link Copied To Clipboard! ✅' : 'Share This Test 🔗'}
+            {isCopied ? t('result.link_copied') : t('result.share_link')}
           </button>
         </div>
       </div>

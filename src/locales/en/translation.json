@@ -1,0 +1,488 @@
+{
+    "welcome": "Welcome to Social Game",
+    "choose_language": "Choose your language",
+    "home": {
+        "trending": "🔥 Trending Now",
+        "hero_title_1": "Do They Really",
+        "hero_title_2": "Know You?",
+        "hero_subtitle": "Create custom quizzes, challenge your friends, and unlock your true social potential in a stunning new dimension.",
+        "play_now": "Play Now",
+        "create_quiz": "Create Quiz",
+        "visual_card_title": "Guess someone",
+        "visual_card_desc": "will get 20/20 huh",
+        "feature_fast": "Fast",
+        "feature_fast_desc": "Instant results and real-time sharing.",
+        "feature_custom": "Custom",
+        "feature_custom_desc": "Design your own tests with unique styles.",
+        "feature_private": "Private",
+        "feature_private_desc": "Your data is yours. Secure and ephemeral.",
+        "how_it_works": "How It Works",
+        "step_1_title": "Create Your Quiz",
+        "step_1_desc": "Choose from our templates or build your own custom \"Vibe Check\" to test your friends.",
+        "step_2_title": "Share the Link",
+        "step_2_desc": "Send your unique quiz link to friends, family, or followers on social media.",
+        "step_3_title": "See Results",
+        "step_3_desc": "Watch the answers roll in and discover who really knows you best!",
+        "story_title": "The Vibe Check Revolution",
+        "story_p1": "In an era where social connection often feels like a metric—likes, views, follows—we wanted to bring back the mystery and fun of genuinely knowing someone.",
+        "story_p2": "Social 2.0 wasn't built just to be another app; it was created to be a mirror. A way to ask the questions you might be too shy to ask in person, and to discover who in your circle truly understands your vibe.",
+        "story_p3": "We believe friendship isn't about how many people follow you, but how well a few people know you. That's why we gamified the \"Vibe Check\". It's not just a test; it's a celebration of the unique bond you share with your friends.",
+        "story_footer": "So go ahead. Create your test. Share your link. And find out: Do they really know you?",
+        "why_choose": "Why Choose Social 2.0?",
+        "detail_privacy": "Privacy First",
+        "detail_privacy_desc": "We don't ask for your email, phone number, or firstborn child. Your quizzes are ephemeral and your data stays yours.",
+        "detail_custom": "Limitless Customization",
+        "detail_custom_desc": "From neon aesthetics to dark mode vibes, our design engine lets you create a test that actually looks like you.",
+        "detail_feedback": "Instant Feedback",
+        "detail_feedback_desc": "No waiting for results. Watch live as your friends take the test and see who tops the leaderboard in real-time.",
+        "detail_cross": "Cross-Platform Magic",
+        "detail_cross_desc": "Works perfectly on Instagram stories, TikTok bio links, WhatsApp groups, and Discord servers. One link, everywhere.",
+        "community_vibes": "Community Vibes",
+        "leave_vibe": "Leave a Vibe",
+        "your_name": "Your Name",
+        "share_exp": "Share your experience...",
+        "post_vibe": "Post Vibe",
+        "posting": "Posting...",
+        "be_first": "Be the first to share your vibe!",
+        "faq_title": "Frequently Asked Questions",
+        "faq_1_q": "Is Social 2.0 free to use?",
+        "faq_1_a": "Yes! Creating and playing quizzes is 100% free. We are supported by ads.",
+        "faq_2_q": "Do I need an account?",
+        "faq_2_a": "No account is required to create or play a test. We believe in privacy and simplicity.",
+        "faq_3_q": "How do I delete my data?",
+        "faq_3_a": "Test data is automatically archived. You can also contact us to request immediate deletion."
+    },
+    "footer": {
+        "tagline": "\" Designed for Vibe Checks & Good Times \"",
+        "blog": "Blog",
+        "about": "About Us",
+        "contact": "Contact",
+        "privacy": "Privacy Policy",
+        "terms": "Terms",
+        "copyright": "© 2026 Bouzakraoui Mohamed. All rights reserved."
+    },
+    "enter": {
+        "title": "🎮 Play a Test",
+        "subtitle": "Enter the test ID your friend shared with you",
+        "placeholder": "Enter test ID (e.g., ABC123)",
+        "button": "Start Playing",
+        "back_home": "Go Back Home",
+        "error_not_found": "Test not found. Please check the ID and try again.",
+        "error_generic": "An error occurred. Please try again."
+    },
+    "create": {
+        "title": "Create Your Test",
+        "subtitle_1": "First, what's your",
+        "subtitle_2": "Full Name",
+        "subtitle_small": "Your friends will see this when they play.",
+        "placeholder": "Enter your Full Name (First & Last)...",
+        "next": "Next ➡️",
+        "error_empty": "Please enter your name",
+        "error_short": "Please enter your Full Name (First & Last name)",
+        "warning_title": "Before you start",
+        "warning_text_1": "You will be able to skip",
+        "warning_text_2": "only 3 questions",
+        "warning_subtext": "Be careful! Your friends will only answer the questions you pick.",
+        "warning_button": "I Understand, Let's Go! 🚀",
+        "skips_left": "Skips left:",
+        "previous": "Previous",
+        "skip": "Skip",
+        "finish": "Finish",
+        "saving": "Saving..."
+    },
+    "intro": {
+        "not_found_title": "🚫 Test Not Found",
+        "not_found_desc": "We couldn't find a test with ID:",
+        "check_id": "Please check the ID and try again.",
+        "go_home": "Go Home",
+        "how_much_1": "How",
+        "how_much_2": "much",
+        "how_much_3": "do",
+        "how_much_4": "you",
+        "how_much_5": "know",
+        "how_much_6": "about",
+        "subtitle_1": "Let's see how well you know",
+        "subtitle_2": "Ready to test your knowledge?",
+        "label_name": "What's your",
+        "label_name_bold": "Full Name",
+        "placeholder": "Enter your Full Name (First & Last)...",
+        "start_button": "Start Quiz 🚀",
+        "good_luck": "Good luck! 🍀",
+        "friend": "your friend",
+        "error_empty": "Please enter your full name",
+        "error_short": "Please enter your Full Name (First & Last name)",
+        "error_not_found": "Test not found. Cannot start."
+    },
+    "play": {
+        "preparing": "Preparing your test...",
+        "ready": "Ready",
+        "instruction": "Guess what",
+        "creator": "the creator",
+        "chose": "chose!",
+        "see_results": "See Results",
+        "next": "Next",
+        "previous": "Previous"
+    },
+    "result": {
+        "score_title": "Your Score",
+        "score_perfect": "Perfect! You know them inside out! 🎉",
+        "score_excellent": "Excellent! You're a great friend! 🌟",
+        "score_good": "Good job! You know them pretty well! 👍",
+        "score_average": "Not bad, but there's room for improvement! 💪",
+        "score_bad": "Better luck next time! Keep trying! 💪",
+        "your_answers": "Your Answers",
+        "guess": "Your guess:",
+        "correct": "Correct answer:",
+        "not_answered": "Not answered",
+        "create_own": "Create Your Own Test",
+        "share_link": "Share This Test 🔗",
+        "link_copied": "Link Copied To Clipboard! ✅",
+        "loading": "Loading..."
+    },
+    "viewer": {
+        "title": "Test Results",
+        "subtitle": "See how well your friends know you!",
+        "total_players": "Total Players",
+        "avg_score": "Average Score",
+        "highest_score": "Highest Score",
+        "no_results": "No results yet!",
+        "no_results_desc": "Share your test link with friends to see their results here.",
+        "copy_link": "Copy Test Link",
+        "list_title": "Player Results",
+        "detailed_answers": "Detailed Answers",
+        "friend": "Friend:",
+        "you": "You:",
+        "back_share": "Back to Share",
+        "go_home": "Go Home"
+    },
+    "share": {
+        "header": "Your Test is Ready!",
+        "subtitle": "Share this link with your friends and see how well they know you!",
+        "test_id": "Test ID:",
+        "btn_share": "📤 Share Link",
+        "btn_copied": "Link & Message Copied! ✅",
+        "manual_label": "Or copy link manually:",
+        "btn_copy": "Copy Link",
+        "btn_copy_done": "Copied! ✅",
+        "results_label": "📊 Your results link (save this!):",
+        "btn_copy_results": "Copy Result Link",
+        "view_results": "View Results 📊",
+        "create_another": "Create Another Test",
+        "home": "Go Home",
+        "how_works": "How it works:",
+        "instruction_1": "📤 Click \"Share With Friends\" to send the test directly!",
+        "instruction_2": "📊 Check the results link to see all player scores",
+        "instruction_3": "💾 Save the results link to track the leaderboard!",
+        "message_part1": "Your friend",
+        "message_part2": "wants to find out how much you know about them! Take the quiz:"
+    },
+    "about": {
+        "title": "About Social 2.0",
+        "lead": "We are redefining digital connection through gamified interactions, bringing fun and authenticity back to social media.",
+        "story_title": "Our Story",
+        "story_text_1": "Social 2.0 was born in 2026 from a simple observation: social media had become too serious. What started as platforms for connecting friends had morphed into spaces for curated perfection and endless scrolling.",
+        "story_text_2": "We missed the early days of the internet—the days of fun surveys, personality tests, and simply hanging out online.",
+        "mission_title": "Our Mission",
+        "point_1_title": "Authenticity Over Algorithms",
+        "point_1_text": "We don't have a feed. We don't have an algorithm deciding what you see. Your interactions are between you and the friends you share your link with.",
+        "point_2_title": "Privacy centered Design",
+        "point_2_text": "In a data-hungry world, we choose to starve. We don't require emails or phone numbers to play. We believe fun shouldn't come at the cost of your personal data.",
+        "point_3_title": "Aesthetics Matter",
+        "point_3_text": "We believe that digital tools should be beautiful. We invest heavily in design, animations, and user experience to ensure that every \"Vibe Check\" feels premium.",
+        "join_title": "Join the Movement",
+        "join_text": "Whether you are here to test your best friend, challenge your partner, or just kill some time, we are glad you are here. Social 2.0 is more than just a website; it's a reminder that friendship is supposed to be fun.",
+        "team": "— The Social 2.0 Team"
+    },
+    "contact": {
+        "title": "Get in Touch",
+        "subtitle": "Have questions, feedback, or just want to verify some vibes? We're here for it.",
+        "social_title": "Socials",
+        "social_desc": "Follow us for updates, features, and community highlights.",
+        "email_title": "Email Us",
+        "email_desc": "For partnerships, business inquiries, or technical support."
+    },
+    "cookie": {
+        "message": "We use cookies to improve your experience and deliver personalized ads. By using our site, you acknowledge that you have read and understand our",
+        "policy_link": "Privacy Policy",
+        "accept": "Got it!"
+    },
+    "privacy": {
+        "title": "Privacy Policy",
+        "last_updated": "Last updated: January 16, 2026",
+        "intro_title": "1. Introduction",
+        "intro_text": "Welcome to Social 2.0 (\"we,\" \"our,\" or \"us\"). We are committed to protecting your privacy. This Privacy Policy explains how your information is collected, used, and disclosed by Social 2.0.",
+        "info_title": "2. Information We Collect",
+        "info_text": "We collect information you provide directly to us, such as when you create a test, including your name and the answers you select. We do not require you to create an account or provide an email address.",
+        "cookies_title": "Cookies and Web Beacons",
+        "cookies_text_1": "We use third-party services, specifically Adsterra, to serve ads. These services may use cookies to serve ads based on your prior visits to our website or other websites.",
+        "cookies_text_2": "Adsterra's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our site and/or other sites on the Internet.",
+        "use_title": "3. How We Use Your Information",
+        "use_text": "We use the information we collect to:",
+        "use_list_1": "Provide, maintain, and improve our services.",
+        "use_list_2": "Generate your personalized \"Vibe Check\" tests.",
+        "ads_title": "4. Advertising and Cookies",
+        "ads_text_1": "Adsterra: We use Adsterra to serve advertisements. Adsterra uses cookies to serve ads based on your prior visits to our website or other websites.",
+        "ads_text_2": "Your Choices: You can opt out of a third-party vendor's use of cookies for personalized advertising by visiting",
+        "retention_title": "5. Data Retention",
+        "retention_text": "Test data (names and answers) is stored securely to allow your friends to play. We do not sell your personal data to third parties.",
+        "contact_title": "6. Contact Us",
+        "contact_text": "If you have any questions about this Privacy Policy, please contact us."
+    },
+    "terms": {
+        "title": "Terms of Service",
+        "last_updated": "Last updated: January 16, 2026",
+        "accept_title": "1. Acceptance of Terms",
+        "accept_text": "By accessing or using Social 2.0, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.",
+        "desc_title": "2. Description of Service",
+        "desc_text": "Social 2.0 is an entertainment platform that allows users to create and share personality quizzes (\"Vibe Checks\") with friends.",
+        "conduct_title": "3. User Conduct",
+        "conduct_text": "You agree not to use the service for any illegal or unauthorized purpose. You are solely responsible for your conduct and any data you submit to the service.",
+        "ip_title": "4. Intellectual Property",
+        "ip_text": "The content, design, and functionality of Social 2.0 are owned by us and are protected by international copyright laws.",
+        "disclaimer_title": "5. Disclaimer of Warranties",
+        "disclaimer_text": "The service is provided on an \"as is\" and \"as available\" basis. We make no warranties, expressed or implied, regarding the operation of the service or the information, content, or materials included.",
+        "liability_title": "6. Limitation of Liability",
+        "liability_text": "In no event shall Social 2.0 be liable for any direct, indirect, incidental, special, or consequential damages arising out of or in any way connected with the use of our service."
+    },
+    "blog": {
+        "header_title": "The Social 2.0 Blog",
+        "header_subtitle": "Stories about friendship, connection, and the digital vibe.",
+        "read_more": "Read Article",
+        "back": "Back to Blog",
+        "not_found": "Article not found",
+        "written_by": "Written by"
+    },
+    "quiz": {
+        "next": "Next"
+    },
+    "categories": {
+        "1": {
+            "question": "Favorite Color",
+            "options": {
+                "0": "Red",
+                "1": "Blue",
+                "2": "Yellow",
+                "3": "Pink",
+                "4": "Purple",
+                "5": "Black",
+                "6": "White",
+                "7": "Brown"
+            }
+        },
+        "2": {
+            "question": "Favorite Fruit",
+            "options": {
+                "0": "Apple",
+                "1": "Banana",
+                "2": "Strawberry",
+                "3": "Mango",
+                "4": "Kiwi",
+                "5": "Orange",
+                "6": "Watermelon",
+                "7": "Pineapple"
+            }
+        },
+        "3": {
+            "question": "Favorite Fast Food",
+            "options": {
+                "0": "Burger",
+                "1": "Pizza",
+                "2": "Tacos"
+            }
+        },
+        "4": {
+            "question": "Favorite Asian Food",
+            "options": {
+                "0": "Sushi",
+                "1": "Noodles"
+            }
+        },
+        "5": {
+            "question": "Favorite Drink",
+            "options": {
+                "0": "Coffee",
+                "1": "Tea"
+            }
+        },
+        "6": {
+            "question": "Favorite Car",
+            "options": {
+                "0": "Audi",
+                "1": "BMW",
+                "2": "Mercedes",
+                "3": "Porsche"
+            }
+        },
+        "7": {
+            "question": "Dream Vacation",
+            "options": {
+                "0": "Beach",
+                "1": "City",
+                "2": "Cultural",
+                "3": "Adventure"
+            }
+        },
+        "8": {
+            "question": "Favorite Weather",
+            "options": {
+                "0": "Sunny",
+                "1": "Rainy",
+                "2": "Cloudy",
+                "3": "Snowy"
+            }
+        },
+        "9": {
+            "question": "Favorite Season",
+            "options": {
+                "0": "Spring",
+                "1": "Summer",
+                "2": "Fall",
+                "3": "Winter"
+            }
+        },
+        "10": {
+            "question": "Favorite Animal",
+            "options": {
+                "0": "Dog",
+                "1": "Cat",
+                "2": "Bird",
+                "3": "Fish"
+            }
+        },
+        "11": {
+            "question": "Favorite Social Media",
+            "options": {
+                "0": "Instagram",
+                "1": "TikTok",
+                "2": "Facebook",
+                "3": "WhatsApp"
+            }
+        },
+        "12": {
+            "question": "Favorite Movie Genre",
+            "options": {
+                "0": "Action",
+                "1": "Comedy",
+                "2": "Drama",
+                "3": "Horror",
+                "4": "Romance"
+            }
+        },
+        "13": {
+            "question": "Favorite Hobby",
+            "options": {
+                "0": "Cooking",
+                "1": "Gaming",
+                "2": "Music",
+                "3": "Sleeping"
+            }
+        },
+        "14": {
+            "question": "Ideal Date",
+            "options": {
+                "0": "Dinner",
+                "1": "Cinema",
+                "2": "Walk",
+                "3": "Travel"
+            }
+        },
+        "15": {
+            "question": "Personality",
+            "options": {
+                "0": "Introvert",
+                "1": "Extrovert"
+            }
+        },
+        "16": {
+            "question": "App Theme",
+            "options": {
+                "0": "Light Mode",
+                "1": "Dark Mode"
+            }
+        },
+        "17": {
+            "question": "Football Team",
+            "options": {
+                "0": "Real Madrid",
+                "1": "Barcelona"
+            }
+        },
+        "18": {
+            "question": "Time of Day",
+            "options": {
+                "0": "Morning",
+                "1": "Night"
+            }
+        },
+        "19": {
+            "question": "Dream Country to Live",
+            "options": {
+                "0": "USA",
+                "1": "France",
+                "2": "Italy",
+                "3": "Japan",
+                "4": "Saudi Arabia",
+                "5": "Switzerland",
+                "6": "Russia",
+                "7": "Egypt"
+            }
+        },
+        "20": {
+            "question": "GOAT Debate",
+            "options": {
+                "0": "Messi",
+                "1": "Ronaldo"
+            }
+        },
+        "21": {
+            "question": "Communication Style",
+            "options": {
+                "0": "Texting",
+                "1": "Calling",
+                "2": "Voice Notes",
+                "3": "FaceTime"
+            }
+        },
+        "22": {
+            "question": "Music Vibe",
+            "options": {
+                "0": "Pop",
+                "1": "Rap/Hip-Hop",
+                "2": "Rock",
+                "3": "Classical/Chill",
+                "4": "Old School",
+                "5": "Metal",
+                "6": "Instrumental",
+                "7": "Jazz"
+            }
+        },
+        "23": {
+            "question": "Phone Team",
+            "options": {
+                "0": "iPhone",
+                "1": "Android"
+            }
+        }
+    },
+    "blog_posts": {
+        "psychology-of-friendship": {
+            "title": "The Psychology of Friendship: Why We Need 'Vibe Checks'",
+            "excerpt": "Why do we crave validation from our peers? Explore the science behind social connection and why personalized quizzes are more than just a game.",
+            "readTime": "5 min read",
+            "content": "<p>In an age where \"connection\" often means a double-tap on a photo, we are paradoxically more connected and yet more isolated than ever before. Social psychologists have long studied the \"Propinquity Effect\"—the tendency to form friendships with those we encounter often—but how does this translate to the digital realm?</p><h2>The Need for Validation</h2><p>Validation is a fundamental human need. When we ask our friends to take a \"Vibe Check\" or a \"How well do you know me?\" quiz, we aren't just looking for a high score. We are looking for <em>evidence</em> of our bond. We are asking, \"Do you see me? Do you understand who I am beneath the curated feed?\"</p><p>Studies show that shared knowledge is a key indicator of relational depth. Knowing your friend's favorite pizza topping might seem trivial, but it signals that you've been paying attention. It signals <em>intimacy</em>.</p><h2>Gamifying Connection</h2><p>This is where platforms like Social 2.0 come in. By turning these small details into a game, we lower the stakes. It's not a serious interrogation; it's a quiz. It allows for vulnerability without the awkwardness. If a friend gets a question wrong, it's a funny moment. If they get it right, it's a triumph.</p><h2>The Dopamine of Being Known</h2><p>Getting a notification that someone \"aced\" your test releases dopamine. It validates your identity and reinforces your social standing within your group. It implies, \"I am important enough to this person that they remember this detail about me.\"</p><p>So the next time you send out a quiz, remember: you're not just killing time. You're engaging in a digital ritual of bonding that harkens back to our deepest tribal instincts of belonging.</p>"
+        },
+        "10-questions-reveal-friends": {
+            "title": "10 Questions That Reveal Who Your Real Friends Are",
+            "excerpt": "Tired of surface-level small talk? These 10 questions cut through the noise and show you who's really paying attention.",
+            "readTime": "4 min read",
+            "content": "<p>We all have that one friend who claims to know us better than we know ourselves. But when put to the test, can they actually deliver? Here are 10 questions that separate the acquaintances from the besties.</p><h2>1. The \"Comfort Food\" Question</h2><p><em>\"If I'm having a bad day, what is the ONE meal that will fix it?\"</em><br>Real friends don't just know you like pizza. They know you specifically need <em>extra cheese</em> and a side of ranch.</p><h2>2. The \"Fear\" Factor</h2><p><em>\"What is my irrational fear?\"</em><br>Is it spiders? Clowns? Or is it the fear of being misunderstood? (Okay, that got deep). A true friend knows what makes you jump.</p><h2>3. The Dream Destination</h2><p><em>\"If I won the lottery today, where is the first place I'd fly to?\"</em><br>This question reveals if they know your aspirations and aesthetics.</p><h2>4. The Pet Peeve</h2><p><em>\"What is the one sound that makes me instantly angry?\"</em><br>Chewing loudly? Slow walkers? Knowing your triggers is a sign of true observation.</p><h2>5. The Late Night Habit</h2><p><em>\"What am I usually doing at 2 AM?\"</em><br>Sleeping? Doom-scrolling? Coding? This reveals how well they know your daily (or nightly) rhythm.</p><h3>Why These Matter</h3><p>These questions aren't just trivia. They are proxies for empathy. They show who has been listening when you weren't trying to be heard. Use them in your next Social 2.0 quiz and see who rises to the challenge!</p>"
+        },
+        "social-2.0-authentic-connections": {
+            "title": "Social 2.0: Returning to Authentic Connections",
+            "excerpt": "Why we built Social 2.0, and why the future of social media is smaller, tighter, and more personal circles.",
+            "author": "Editorial Team",
+            "readTime": "3 min read",
+            "content": "<p>The early internet was a place of discovery. Then came the era of the \"Influencer\" and the algorithmic feed. Suddenly, social media wasn't about your friends; it was about content consumption.</p><h2>The Shift Back to Private</h2><p>We are seeing a massive shift. People are moving away from public broadcasting and towards private intimacy. Group chats, Discords, and Close Friends lists are the new social square.</p><h2>Less Noise, More Signal</h2><p>Social 2.0 was built on this philosophy. We didn't want a feed of endless viral videos. We wanted a tool that facilitated a direct interaction between you and your circle. A \"Vibe Check\" is a signal sent out into the noise, looking for a response from the people who matter.</p><h2>Data Privacy as a Feature</h2><p>Authenticity requires safety. That's why we don't store your history forever. We don't sell your profile. We believe that digital interactions should be as ephemeral and carefree as a conversation in a coffee shop.</p><p>Welcome to the new era of social. Welcome to Social 2.0.</p>"
+        }
+    }
+}

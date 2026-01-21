@@ -3,10 +3,12 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import AdUnit from '../components/AdUnit';
 import './EnterTestId.css';
 
 const EnterTestId = () => {
+  const { t } = useTranslation();
   const [testId, setTestId] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -26,33 +28,33 @@ const EnterTestId = () => {
         setError('');
         navigate(`/play/${formattedId}`);
       } else {
-        setError('Test not found. Please check the ID and try again.');
+        setError(t('enter.error_not_found'));
       }
     } catch (err) {
       console.error('Error checking test ID:', err);
-      setError('An error occurred. Please try again.');
+      setError(t('enter.error_generic'));
     }
   };
 
   return (
     <div className="enter-test-id-container">
       <div className="enter-test-id-content">
-        <h1>🎮 Play a Test</h1>
-        <p>Enter the test ID your friend shared with you</p>
+        <h1>{t('enter.title')}</h1>
+        <p>{t('enter.subtitle')}</p>
 
         <form onSubmit={handleSubmit} className="test-id-form">
           <input
             type="text"
             value={testId}
             onChange={(e) => setTestId(e.target.value)}
-            placeholder="Enter test ID (e.g., ABC123)"
+            placeholder={t('enter.placeholder')}
             className="test-id-input"
             maxLength={6}
             required
           />
           {error && <p className="error-message">{error}</p>}
           <button type="submit" className="btn btn-primary">
-            Start Playing
+            {t('enter.button')}
           </button>
         </form>
 
@@ -60,7 +62,7 @@ const EnterTestId = () => {
           className="btn btn-link"
           onClick={() => navigate('/')}
         >
-          Go Back Home
+          {t('enter.back_home')}
         </button>
 
         {/* Ad Space */}

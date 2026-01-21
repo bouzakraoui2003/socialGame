@@ -1,11 +1,13 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { blogPosts } from '../data/blogData';
 import { FaArrowLeft, FaCalendar, FaUser } from 'react-icons/fa';
 import AdUnit from '../components/AdUnit';
 import './Blog.css';
 
 const BlogPost = () => {
+    const { t } = useTranslation();
     const { id } = useParams();
     const navigate = useNavigate();
     const post = blogPosts.find(p => p.id === id);
@@ -13,8 +15,8 @@ const BlogPost = () => {
     if (!post) {
         return (
             <div className="blog-not-found">
-                <h2>Article not found</h2>
-                <button onClick={() => navigate('/blog')} className="btn btn-primary">Back to Blog</button>
+                <h2>{t('blog.not_found')}</h2>
+                <button onClick={() => navigate('/blog')} className="btn btn-primary">{t('blog.back')}</button>
             </div>
         );
     }
@@ -51,13 +53,13 @@ const BlogPost = () => {
                     <div className="post-meta">
                         <span><FaCalendar style={{ marginBottom: -2 }} /> {post.date}</span>
                         <span className="separator">•</span>
-                        <span><FaUser style={{ marginBottom: -2 }} /> {post.author}</span>
+                        <span><FaUser style={{ marginBottom: -2 }} /> {t(`blog_posts.${post.id}.author`, post.author)}</span>
                     </div>
-                    <h1 className="post-title">{post.title}</h1>
-                    <img src={post.imageUrl} alt={post.title} className="post-hero-image" />
+                    <h1 className="post-title">{t(`blog_posts.${post.id}.title`, post.title)}</h1>
+                    <img src={post.imageUrl} alt={t(`blog_posts.${post.id}.title`, post.title)} className="post-hero-image" />
                 </header>
 
-                <div className="post-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+                <div className="post-content" dangerouslySetInnerHTML={{ __html: t(`blog_posts.${post.id}.content`, post.content) }} />
 
                 <div className="post-footer">
                     <hr />

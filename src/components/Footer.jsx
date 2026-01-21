@@ -1,28 +1,33 @@
 
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FaInstagram, FaFacebook, FaTiktok } from 'react-icons/fa';
 import './Footer.css';
 
 const Footer = () => {
+    const { t } = useTranslation();
+
     return (
         <footer className="app-footer glass-panel">
             <div className="footer-content">
                 <div className="footer-top">
-                    <p className="tagline">" Designed for Vibe Checks & Good Times "</p>
+                    <p className="tagline">{t('footer.tagline')}</p>
                 </div>
 
                 <div className="footer-links">
-                    <Link to="/blog">Blog</Link>
-                    <Link to="/about">About Us</Link>
-                    <Link to="/contact">Contact</Link>
-                    <Link to="/privacy">Privacy Policy</Link>
-                    <Link to="/terms">Terms</Link>
+                    <Link to="/blog">{t('footer.blog')}</Link>
+                    <Link to="/about">{t('footer.about')}</Link>
+                    <Link to="/contact">{t('footer.contact')}</Link>
+                    <Link to="/privacy">{t('footer.privacy')}</Link>
+                    <Link to="/terms">{t('footer.terms')}</Link>
                 </div>
+
+
 
                 <div className="footer-divider"></div>
 
                 <div className="footer-bottom">
-                    <p className="copyright">© 2026 Bouzakraoui Mohamed. All rights reserved.</p>
+                    <p className="copyright">{t('footer.copyright')}</p>
                     <a href="mailto:simo10bouzakraoui@gmail.com" className="footer-email-link">
                         simo10bouzakraoui@gmail.com
                     </a>

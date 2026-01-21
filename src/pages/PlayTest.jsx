@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { categories } from '../data/categories';
 import { getTest } from '../utils/storage';
 import ProgressBar from '../components/ProgressBar';
@@ -12,6 +13,7 @@ import AdUnit from '../components/AdUnit';
 import './PlayTest.css';
 
 const PlayTest = () => {
+  const { t } = useTranslation();
   const { testId } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -174,7 +176,7 @@ const PlayTest = () => {
     return (
       <div className="play-test-container loading-container">
         <div className="loading-content">
-          <h2 className="loading-title">Preparing your test...</h2>
+          <h2 className="loading-title">{t('play.preparing')}</h2>
 
           <div className="loading-bar-track">
             <div
@@ -182,11 +184,13 @@ const PlayTest = () => {
               style={{ width: `${loadingProgress}%` }}
             ></div>
           </div>
-          <p className="loading-text">{loadingProgress}% Ready</p>
+          <p className="loading-text">{loadingProgress}% {t('play.ready')}</p>
         </div>
       </div>
     );
   }
+
+  const creatorName = testData.creatorName || t('play.creator');
 
   return (
     <div className="play-test-container">
@@ -194,20 +198,26 @@ const PlayTest = () => {
         <ProgressBar current={currentCategoryIndex + 1} total={totalCategories} />
 
         <div className="category-section">
-          <h2 className="category-question">{currentCategory.question}</h2>
-          <p className="category-instruction">Guess what {testData.creatorName || 'the creator'} chose!</p>
+          <h2 className="category-question">{t(`categories.${currentCategory.id}.question`, currentCategory.question)}</h2>
+          <p className="category-instruction">{t('play.instruction')} {creatorName} {t('play.chose')}</p>
 
           <div className={`options-grid grid-count-${currentCategory.options.length} ${currentCategory.options.length <= 2 ? 'grid-center-limited' : ''}`}>
             {currentCategory.options.map((option, index) => {
-              const optionText = typeof option === 'object' ? option.text : option;
-              const isSelected = selectedOption === optionText;
+              const originalText = typeof option === 'object' ? option.text : option;
+              const translatedText = t(`categories.${currentCategory.id}.options.${index}`, originalText);
+
+              const displayOption = typeof option === 'object'
+                ? { ...option, text: translatedText }
+                : { text: translatedText, image: null };
+
+              const isSelected = selectedOption === originalText;
 
               return (
                 <div key={index} className="card-wrapper">
                   <CategoryCard
-                    option={option}
+                    option={displayOption}
                     isSelected={isSelected}
-                    onClick={() => handleOptionSelect(optionText)}
+                    onClick={() => handleOptionSelect(originalText)}
                   />
                 </div>
               );
@@ -221,7 +231,7 @@ const PlayTest = () => {
             onClick={handlePrevious}
             disabled={currentCategoryIndex === 0}
           >
-            Previous
+            {t('play.previous')}
           </button>
 
           <button
@@ -229,7 +239,7 @@ const PlayTest = () => {
             onClick={handleNext}
             disabled={!selectedOption}
           >
-            {isLastCategory ? 'See Results' : 'Next'}
+            {isLastCategory ? t('play.see_results') : t('play.next')}
           </button>
         </div>
 

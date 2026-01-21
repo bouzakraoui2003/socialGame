@@ -3,12 +3,14 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { getTest, getPlayerResults } from '../utils/storage';
 import { categories } from '../data/categories';
 import AdUnit from '../components/AdUnit';
 import './ResultsViewer.css';
 
 const ResultsViewer = () => {
+  const { t } = useTranslation();
   const { testId } = useParams();
   const navigate = useNavigate();
   const [testData, setTestData] = useState(null);
@@ -53,16 +55,26 @@ const ResultsViewer = () => {
     const percentage = (score / total) * 100;
 
     if (percentage === 100) {
-      return { message: "Perfect! 🏆", emoji: "🏆", color: "#22c55e" };
+      return { message: t('result.score_perfect'), emoji: "🏆", color: "#22c55e" };
     } else if (percentage >= 80) {
-      return { message: "Excellent! ✨", emoji: "✨", color: "#3b82f6" };
+      return { message: t('result.score_excellent'), emoji: "✨", color: "#3b82f6" };
     } else if (percentage >= 60) {
-      return { message: "Good job! 👍", emoji: "👍", color: "#8b5cf6" };
+      return { message: t('result.score_good'), emoji: "👍", color: "#8b5cf6" };
     } else if (percentage >= 40) {
-      return { message: "Not bad! 💪", emoji: "💪", color: "#f59e0b" };
+      return { message: t('result.score_average'), emoji: "💪", color: "#f59e0b" };
     } else {
-      return { message: "Keep trying! 🎯", emoji: "🎯", color: "#ef4444" };
+      return { message: t('result.score_bad'), emoji: "🎯", color: "#ef4444" };
     }
+  };
+
+  const getTranslatedOption = (category, optionText) => {
+    if (!optionText) return 'Skipped'; // Could translate this too but let's stick to simplest fallback or add key
+    const index = category.options.findIndex(opt => {
+      const text = typeof opt === 'object' ? opt.text : opt;
+      return text === optionText;
+    });
+    if (index === -1) return optionText;
+    return t(`categories.${category.id}.options.${index}`, optionText);
   };
 
   const formatDate = (dateString) => {
@@ -83,14 +95,14 @@ const ResultsViewer = () => {
   const handleCopyLink = () => {
     const link = getShareableLink();
     navigator.clipboard.writeText(link).then(() => {
-      alert('Link copied to clipboard!');
+      alert(t('result.link_copied'));
     });
   };
 
   if (loading) {
     return (
       <div className="results-viewer-container">
-        <div className="loading">Loading results...</div>
+        <div className="loading">{t('result.loading')}</div>
       </div>
     );
   }
@@ -101,14 +113,14 @@ const ResultsViewer = () => {
     <div className="results-viewer-container">
       <div className="results-viewer-content">
         <div className="results-header">
-          <h1>Test Results</h1>
-          <p>See how well your friends know you!</p>
+          <h1>{t('viewer.title')}</h1>
+          <p>{t('viewer.subtitle')}</p>
         </div>
 
         <div className="results-stats">
           <div className="stat-card">
             <div className="stat-number">{results.length}</div>
-            <div className="stat-label">Total Players</div>
+            <div className="stat-label">{t('viewer.total_players')}</div>
           </div>
           <div className="stat-card">
             <div className="stat-number">
@@ -116,13 +128,13 @@ const ResultsViewer = () => {
                 ? Math.round((results.reduce((sum, r) => sum + r.score, 0) / results.length / totalQuestions) * 100)
                 : 0}%
             </div>
-            <div className="stat-label">Average Score</div>
+            <div className="stat-label">{t('viewer.avg_score')}</div>
           </div>
           <div className="stat-card">
             <div className="stat-number">
               {results.length > 0 ? Math.max(...results.map(r => r.score)) : 0}/{totalQuestions}
             </div>
-            <div className="stat-label">Highest Score</div>
+            <div className="stat-label">{t('viewer.highest_score')}</div>
           </div>
         </div>
 
@@ -134,15 +146,15 @@ const ResultsViewer = () => {
         {results.length === 0 ? (
           <div className="no-results">
             <div className="no-results-icon">📭</div>
-            <h2>No results yet!</h2>
-            <p>Share your test link with friends to see their results here.</p>
+            <h2>{t('viewer.no_results')}</h2>
+            <p>{t('viewer.no_results_desc')}</p>
             <button className="btn btn-primary" onClick={handleCopyLink}>
-              Copy Test Link
+              {t('viewer.copy_link')}
             </button>
           </div>
         ) : (
           <div className="results-list">
-            <h2 className="results-list-title">Player Results</h2>
+            <h2 className="results-list-title">{t('viewer.list_title')}</h2>
             {results.map((result, index) => {
               const scoreMessage = getScoreMessage(result.score, result.totalQuestions || totalQuestions);
               return (
@@ -181,7 +193,7 @@ const ResultsViewer = () => {
                   {expandedPlayerId === result.id && (
                     <div className="result-details">
                       <div className="details-divider"></div>
-                      <h4>Detailed Answers</h4>
+                      <h4>{t('viewer.detailed_answers')}</h4>
                       <div className="detailed-answers-list">
                         {categories.map((category) => {
                           const guess = result.guesses ? result.guesses[category.id] : null;
@@ -192,18 +204,21 @@ const ResultsViewer = () => {
                           const guessText = typeof guess === 'object' ? guess.text : guess;
                           const answerText = typeof correctAnswer === 'object' ? correctAnswer.text : correctAnswer;
 
+                          const translatedGuess = getTranslatedOption(category, guessText);
+                          const translatedAnswer = getTranslatedOption(category, answerText);
+
                           return (
                             <div key={category.id} className={`detail-item ${isCorrect ? 'correct' : 'incorrect'}`}>
-                              <div className="detail-question">{category.question}</div>
+                              <div className="detail-question">{t(`categories.${category.id}.question`, category.question)}</div>
                               <div className="detail-comparison">
                                 <div className="detail-row">
-                                  <span className="detail-label">Friend:</span>
-                                  <span className="detail-value">{guessText || 'Skipped'}</span>
+                                  <span className="detail-label">{t('viewer.friend')}</span>
+                                  <span className="detail-value">{translatedGuess || 'Skipped'}</span>
                                 </div>
                                 {!isCorrect && (
                                   <div className="detail-row correct-row">
-                                    <span className="detail-label">You:</span>
-                                    <span className="detail-value">{answerText}</span>
+                                    <span className="detail-label">{t('viewer.you')}</span>
+                                    <span className="detail-value">{translatedAnswer}</span>
                                   </div>
                                 )}
                               </div>
@@ -221,13 +236,13 @@ const ResultsViewer = () => {
 
         <div className="results-actions">
           <button className="btn btn-primary" onClick={handleCopyLink}>
-            Copy Test Link
+            {t('viewer.copy_link')}
           </button>
           <button className="btn btn-secondary" onClick={() => navigate(`/share/${testId}`)}>
-            Back to Share
+            {t('viewer.back_share')}
           </button>
           <button className="btn btn-outline" onClick={() => navigate('/')}>
-            Go Home
+            {t('viewer.go_home')}
           </button>
         </div>
       </div>

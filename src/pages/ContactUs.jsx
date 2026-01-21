@@ -1,9 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { FaInstagram, FaFacebook, FaTiktok, FaEnvelope, FaMobileAlt, FaArrowLeft } from 'react-icons/fa';
 import './ContactUs.css';
 
 const ContactUs = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     return (
@@ -35,9 +37,9 @@ const ContactUs = () => {
 
             <div className="contact-container glass-panel">
                 <div className="contact-header">
-                    <h1>Get in Touch</h1>
+                    <h1>{t('contact.title')}</h1>
                     <p>
-                        Have questions, feedback, or just want to verify some vibes? We're here for it.
+                        {t('contact.subtitle')}
                     </p>
                 </div>
 
@@ -45,8 +47,8 @@ const ContactUs = () => {
                     {/* Social Media Card */}
                     <div className="contact-card">
                         <span className="card-icon"><FaMobileAlt /></span>
-                        <h2 className="card-title">Socials</h2>
-                        <p className="card-desc">Follow us for updates, features, and community highlights.</p>
+                        <h2 className="card-title">{t('contact.social_title')}</h2>
+                        <p className="card-desc">{t('contact.social_desc')}</p>
 
                         <div className="social-links">
                             <a href="https://instagram.com/bzkr_simo" target="_blank" rel="noreferrer" className="social-btn instagram">
@@ -64,8 +66,8 @@ const ContactUs = () => {
                     {/* Email Card */}
                     <div className="contact-card">
                         <span className="card-icon"><FaEnvelope /></span>
-                        <h2 className="card-title">Email Us</h2>
-                        <p className="card-desc">For partnerships, business inquiries, or technical support.</p>
+                        <h2 className="card-title">{t('contact.email_title')}</h2>
+                        <p className="card-desc">{t('contact.email_desc')}</p>
 
                         <div className="social-links">
                             <a href="mailto:simo10bouzakraoui@gmail.com" className="social-btn email">

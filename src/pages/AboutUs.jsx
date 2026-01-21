@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const AboutUs = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     return (
@@ -32,49 +34,49 @@ const AboutUs = () => {
             </button>
 
             <div className="policy-container glass-panel" style={{ maxWidth: '800px', margin: '40px auto', padding: '40px', color: '#fff' }}>
-                <h1 style={{ marginBottom: '1.5rem', fontSize: '2.5rem', textAlign: 'center' }}>About Social 2.0</h1>
+                <h1 style={{ marginBottom: '1.5rem', fontSize: '2.5rem', textAlign: 'center' }}>{t('about.title')}</h1>
 
                 <p className="lead" style={{ fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '2rem', textAlign: 'center', color: '#cbd5e1' }}>
-                    We are redefining digital connection through gamified interactions, bringing fun and authenticity back to social media.
+                    {t('about.lead')}
                 </p>
 
                 <hr style={{ borderColor: 'rgba(255,255,255,0.1)', margin: '2rem 0' }} />
 
                 <section style={{ marginBottom: '2.5rem' }}>
-                    <h2 style={{ color: '#f8fafc', marginBottom: '1rem' }}>Our Story</h2>
+                    <h2 style={{ color: '#f8fafc', marginBottom: '1rem' }}>{t('about.story_title')}</h2>
                     <p style={{ lineHeight: '1.8', color: '#e2e8f0', marginBottom: '1rem' }}>
-                        Social 2.0 was born in 2026 from a simple observation: social media had become too serious. What started as platforms for connecting friends had morphed into spaces for curated perfection and endless scrolling. We missed the early days of the internet—the days of fun surveys, personality tests, and simply hanging out online.
+                        {t('about.story_text_1')}
                     </p>
                     <p style={{ lineHeight: '1.8', color: '#e2e8f0' }}>
-                        Founded by Bouzakraoui Mohamed, we set out to build a platform that focuses on <strong>active interaction</strong> rather than passive consumption. We believe that asking questions ("Vibe Checks") is a powerful way to deepen relationships and spark conversations that might not happen otherwise.
+                        {t('about.story_text_2')}
                     </p>
                 </section>
 
                 <section style={{ marginBottom: '2.5rem' }}>
-                    <h2 style={{ color: '#f8fafc', marginBottom: '1rem' }}>Our Mission</h2>
+                    <h2 style={{ color: '#f8fafc', marginBottom: '1rem' }}>{t('about.mission_title')}</h2>
                     <ul style={{ listStyle: 'none', padding: 0 }}>
                         <li style={{ marginBottom: '1.5rem', background: 'rgba(255,255,255,0.05)', padding: '1.5rem', borderRadius: '12px' }}>
-                            <strong style={{ display: 'block', fontSize: '1.1rem', marginBottom: '0.5rem', color: '#38bdf8' }}>Authencity Over Algorithms</strong>
-                            We don't have a feed. We don't have an algorithm deciding what you see. Your interactions are between you and the friends you share your link with.
+                            <strong style={{ display: 'block', fontSize: '1.1rem', marginBottom: '0.5rem', color: '#38bdf8' }}>{t('about.point_1_title')}</strong>
+                            {t('about.point_1_text')}
                         </li>
                         <li style={{ marginBottom: '1.5rem', background: 'rgba(255,255,255,0.05)', padding: '1.5rem', borderRadius: '12px' }}>
-                            <strong style={{ display: 'block', fontSize: '1.1rem', marginBottom: '0.5rem', color: '#a78bfa' }}>Privacy centered Design</strong>
-                            In a data-hungry world, we choose to starve. We don't require emails or phone numbers to play. We believe fun shouldn't come at the cost of your personal data.
+                            <strong style={{ display: 'block', fontSize: '1.1rem', marginBottom: '0.5rem', color: '#a78bfa' }}>{t('about.point_2_title')}</strong>
+                            {t('about.point_2_text')}
                         </li>
                         <li style={{ marginBottom: '1.5rem', background: 'rgba(255,255,255,0.05)', padding: '1.5rem', borderRadius: '12px' }}>
-                            <strong style={{ display: 'block', fontSize: '1.1rem', marginBottom: '0.5rem', color: '#f472b6' }}>Aesthetics Matter</strong>
-                            We believe that digital tools should be beautiful. We invest heavily in design, animations, and user experience to ensure that every "Vibe Check" feels premium.
+                            <strong style={{ display: 'block', fontSize: '1.1rem', marginBottom: '0.5rem', color: '#f472b6' }}>{t('about.point_3_title')}</strong>
+                            {t('about.point_3_text')}
                         </li>
                     </ul>
                 </section>
 
                 <section>
-                    <h2 style={{ color: '#f8fafc', marginBottom: '1rem' }}>Join the Movement</h2>
+                    <h2 style={{ color: '#f8fafc', marginBottom: '1rem' }}>{t('about.join_title')}</h2>
                     <p style={{ lineHeight: '1.8', color: '#e2e8f0' }}>
-                        Whether you are here to test your best friend, challenge your partner, or just kill some time, we are glad you are here. Social 2.0 is more than just a website; it's a reminder that friendship is supposed to be fun.
+                        {t('about.join_text')}
                     </p>
                     <p style={{ marginTop: '2rem', fontStyle: 'italic', opacity: 0.8 }}>
-                        — The Social 2.0 Team
+                        {t('about.team')}
                     </p>
                 </section>
             </div>

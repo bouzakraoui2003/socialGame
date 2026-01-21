@@ -3,10 +3,12 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { getTest, saveUserName } from '../utils/storage';
 import './PlayIntro.css';
 
 const PlayIntro = () => {
+  const { t } = useTranslation();
   const { testId } = useParams();
   const navigate = useNavigate();
   const [playerName, setPlayerName] = useState('');
@@ -33,17 +35,17 @@ const PlayIntro = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!playerName.trim()) {
-      setError('Please enter your full name');
+      setError(t('intro.error_empty'));
       return;
     }
 
     if (playerName.trim().split(' ').length < 2) {
-      setError('Please enter your Full Name (First & Last name)');
+      setError(t('intro.error_short'));
       return;
     }
 
     if (!testData) {
-      setError('Test not found. Cannot start.');
+      setError(t('intro.error_not_found'));
       return;
     }
 
@@ -61,11 +63,11 @@ const PlayIntro = () => {
     return (
       <div className="play-intro-container">
         <div className="play-intro-content glass-panel">
-          <h1>🚫 Test Not Found</h1>
-          <p>We couldn't find a test with ID: <strong>{testId}</strong></p>
-          <p className="error-hint">Please check the ID and try again.</p>
+          <h1>{t('intro.not_found_title')}</h1>
+          <p>{t('intro.not_found_desc')} <strong>{testId}</strong></p>
+          <p className="error-hint">{t('intro.check_id')}</p>
           <button className="btn btn-primary" onClick={() => navigate('/')}>
-            Go Home
+            {t('intro.go_home')}
           </button>
         </div>
       </div>
@@ -73,31 +75,32 @@ const PlayIntro = () => {
   }
 
   const creatorName = testData.creatorName || 'me';
+  const displayName = creatorName === 'me' ? t('intro.friend') : creatorName;
 
   return (
     <div className="play-intro-container">
       <div className="play-intro-content">
         <div className="intro-animation">
           <h1 className="intro-title">
-            <span className="title-word">How</span>{' '}
-            <span className="title-word">much</span>{' '}
-            <span className="title-word">do</span>{' '}
-            <span className="title-word">you</span>{' '}
-            <span className="title-word">know</span>{' '}
-            <span className="title-word">about</span>{' '}
-            <span className="title-word highlight-name">{creatorName}?</span>
+            <span className="title-word">{t('intro.how_much_1')}</span>{' '}
+            <span className="title-word">{t('intro.how_much_2')}</span>{' '}
+            <span className="title-word">{t('intro.how_much_3')}</span>{' '}
+            <span className="title-word">{t('intro.how_much_4')}</span>{' '}
+            <span className="title-word">{t('intro.how_much_5')}</span>{' '}
+            <span className="title-word">{t('intro.how_much_6')}</span>{' '}
+            <span className="title-word highlight-name">{displayName}?</span>
           </h1>
         </div>
 
         <div className="intro-subtitle">
-          <p>Let's see how well you know {creatorName === 'me' ? 'your friend' : creatorName}!</p>
-          <p>Ready to test your knowledge? 🧠</p>
+          <p>{t('intro.subtitle_1')} {displayName}!</p>
+          <p>{t('intro.subtitle_2')} 🧠</p>
         </div>
 
         <form onSubmit={handleSubmit} className="name-form glass-panel">
           <div className="name-input-group">
             <label htmlFor="playerName" className="name-label">
-              What's your <strong>Full Name</strong>?
+              {t('intro.label_name')} <strong>{t('intro.label_name_bold')}</strong>?
             </label>
             <input
               id="playerName"
@@ -107,7 +110,7 @@ const PlayIntro = () => {
                 setPlayerName(e.target.value);
                 setError('');
               }}
-              placeholder="Enter your Full Name (First & Last)..."
+              placeholder={t('intro.placeholder')}
               className={`name-input ${error ? 'error' : ''}`}
               autoFocus
               maxLength={50}
@@ -116,12 +119,12 @@ const PlayIntro = () => {
           </div>
 
           <button type="submit" className="btn btn-primary btn-large">
-            Start Quiz 🚀
+            {t('intro.start_button')}
           </button>
         </form>
 
         <div className="intro-footer">
-          <p>Good luck! 🍀</p>
+          <p>{t('intro.good_luck')}</p>
         </div>
       </div>
     </div>
