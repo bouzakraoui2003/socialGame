@@ -51,6 +51,19 @@ export const getTest = async (testId) => {
 // Save player's guesses, score, and name
 export const savePlayerResult = async (testId, playerName, guesses, score, answers) => {
   try {
+    // Check if result already exists for this player on this test
+    const { data: existingData } = await supabase
+      .from('results')
+      .select('id')
+      .eq('test_id', testId)
+      .eq('player_name', playerName)
+      .maybeSingle();
+
+    if (existingData) {
+      console.log('Result already exists for this player. Skipping duplicate save.');
+      return existingData;
+    }
+
     const { data, error } = await supabase
       .from('results')
       .insert([
